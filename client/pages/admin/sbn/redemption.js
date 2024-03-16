@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Header, Divider, Table, Popup, Segment } from "semantic-ui-react";
 
-import * as rupiahFormater from "../../../helper_function/rupiahFormater";
-import terbilang from "../../../helper_function/rupiahTerbilang";
+import * as rupeeFormater from "../../../helper_function/rupeeFormater";
+import terbilang from "../../../helper_function/rupeeTerbilang";
 import { format_timestamp_short } from "../../../helper_function/unixDate";
 
 import getContract from "../../../lib/getContract";
@@ -13,7 +13,7 @@ import web3_utils from "web3-utils";
 import Layout from "../../../components/layout";
 import SBNDropdown from "../../../components/SBNDropdown";
 
-class RedemptionDigitalRupiah extends Component {
+class RedemptionDigitalRupee extends Component {
   constructor(props) {
     super(props);
 
@@ -115,7 +115,7 @@ class RedemptionDigitalRupiah extends Component {
   renderRow() {
     if (this.state.web3 != undefined && this.state.accounts[0] != undefined) {
       return this.state.redemption.map((content, index) => {
-        const value_readable = rupiahFormater.whole_number.format(
+        const value_readable = rupeeFormater.whole_number.format(
           content.value
         );
 
@@ -195,4 +195,4 @@ class RedemptionDigitalRupiah extends Component {
   }
 }
 
-export default RedemptionDigitalRupiah;
+export default RedemptionDigitalRupee;

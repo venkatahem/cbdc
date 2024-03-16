@@ -1,25 +1,25 @@
 import React, { Component } from "react";
 import { Header, Divider, Table, Popup } from "semantic-ui-react";
 
-import * as rupiahFormater from "../../../helper_function/rupiahFormater";
+import * as rupeeFormater from "../../../helper_function/rupeeFormater";
 import { format_timestamp_short } from "../../../helper_function/unixDate";
 
 import getContract from "../../../lib/getContract";
 import getWeb3Adresses from "../../../lib/getWeb3Address";
 import CBDC_Dapps_build from "../../../../build/contracts/CBDC_Dapps.json";
-import DigitalRupiah_build from "../../../../build/contracts/DigitalRupiah.json";
+import DigitalRupee_build from "../../../../build/contracts/DigitalRupee.json";
 import web3_utils from "web3-utils";
 
 import Layout from "../../../components/layout";
 
-class RedemptionDigitalRupiah extends Component {
+class RedemptionDigitalRupee extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       accounts: undefined,
       CBDC_Dapps: undefined,
-      DigitalRupiah: undefined,
+      DigitalRupee: undefined,
       BI_owned: 0,
     };
   }
@@ -29,17 +29,17 @@ class RedemptionDigitalRupiah extends Component {
 
     const CBDC_Dapps = await getContract(web3, CBDC_Dapps_build);
 
-    const DigitalRupiahAddress = await CBDC_Dapps.methods
-      .digitalRupiah()
+    const DigitalRupeeAddress = await CBDC_Dapps.methods
+      .digitalRupee()
       .call();
 
-    const DigitalRupiah = await getContract(
+    const DigitalRupee = await getContract(
       web3,
-      DigitalRupiah_build,
-      DigitalRupiahAddress
+      DigitalRupee_build,
+      DigitalRupeeAddress
     );
 
-    const redemption_raw = await DigitalRupiah.getPastEvents("Redemption", {
+    const redemption_raw = await DigitalRupee.getPastEvents("Redemption", {
       fromBlock: 0,
       toBlock: "latest",
     });
@@ -70,7 +70,7 @@ class RedemptionDigitalRupiah extends Component {
       web3,
       accounts,
       CBDC_Dapps,
-      DigitalRupiah,
+      DigitalRupee,
       redemption,
     });
   }
@@ -80,7 +80,7 @@ class RedemptionDigitalRupiah extends Component {
       return this.state.redemption.map((content, index) => {
         const value_readable =
           "D" +
-          rupiahFormater.IDR.format(
+          rupeeFormater.IDR.format(
             web3_utils.fromWei(content.value.toString(), "ether")
           );
 
@@ -155,4 +155,4 @@ class RedemptionDigitalRupiah extends Component {
   }
 }
 
-export default RedemptionDigitalRupiah;
+export default RedemptionDigitalRupee;

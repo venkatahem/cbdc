@@ -1,14 +1,14 @@
 const CBDC_Dapps = artifacts.require("CBDC_Dapps");
-const DigitalRupiah = artifacts.require("DigitalRupiah");
+const DigitalRupee = artifacts.require("DigitalRupee");
 
 contract("CBDC_Dapps", function (accounts) {
-  it("create 10 digital rupiah transfer", async () => {
+  it("create 10 digital rupee transfer", async () => {
     const CBDC_DappsInstance = await CBDC_Dapps.deployed();
 
-    const digitalRupiahAddress = await CBDC_DappsInstance.digitalRupiah();
-    const DigitalRupiahInstance = await DigitalRupiah.at(digitalRupiahAddress);
+    const digitalRupeeAddress = await CBDC_DappsInstance.digitalRupee();
+    const DigitalRupeeInstance = await DigitalRupee.at(digitalRupeeAddress);
 
-    await DigitalRupiahInstance.mint(
+    await DigitalRupeeInstance.mint(
       accounts[0],
       web3.utils.toWei("10000000000", "ether")
     );
@@ -16,7 +16,7 @@ contract("CBDC_Dapps", function (accounts) {
     const promises = [];
 
     for (let i = 0; i < 10; i++) {
-      promises.push(DigitalRupiahInstance.transfer(accounts[1], 1));
+      promises.push(DigitalRupeeInstance.transfer(accounts[1], 1));
     }
 
     const startTime = new Date().getTime();
@@ -29,13 +29,13 @@ contract("CBDC_Dapps", function (accounts) {
     );
   });
 
-  it("create 30 digital rupiah transfer", async () => {
+  it("create 30 digital rupee transfer", async () => {
     const CBDC_DappsInstance = await CBDC_Dapps.deployed();
 
-    const digitalRupiahAddress = await CBDC_DappsInstance.digitalRupiah();
-    const DigitalRupiahInstance = await DigitalRupiah.at(digitalRupiahAddress);
+    const digitalRupeeAddress = await CBDC_DappsInstance.digitalRupee();
+    const DigitalRupeeInstance = await DigitalRupee.at(digitalRupeeAddress);
 
-    await DigitalRupiahInstance.mint(
+    await DigitalRupeeInstance.mint(
       accounts[0],
       web3.utils.toWei("10000000000", "ether")
     );
@@ -43,7 +43,7 @@ contract("CBDC_Dapps", function (accounts) {
     const promises = [];
 
     for (let i = 0; i < 30; i++) {
-      promises.push(DigitalRupiahInstance.transfer(accounts[1], 1));
+      promises.push(DigitalRupeeInstance.transfer(accounts[1], 1));
     }
 
     const startTime = new Date().getTime();
@@ -56,13 +56,13 @@ contract("CBDC_Dapps", function (accounts) {
     );
   });
 
-  it("create 50 digital rupiah transfer", async () => {
+  it("create 50 digital rupee transfer", async () => {
     const CBDC_DappsInstance = await CBDC_Dapps.deployed();
 
-    const digitalRupiahAddress = await CBDC_DappsInstance.digitalRupiah();
-    const DigitalRupiahInstance = await DigitalRupiah.at(digitalRupiahAddress);
+    const digitalRupeeAddress = await CBDC_DappsInstance.digitalRupee();
+    const DigitalRupeeInstance = await DigitalRupee.at(digitalRupeeAddress);
 
-    await DigitalRupiahInstance.mint(
+    await DigitalRupeeInstance.mint(
       accounts[0],
       web3.utils.toWei("10000000000", "ether")
     );
@@ -70,7 +70,7 @@ contract("CBDC_Dapps", function (accounts) {
     const promises = [];
 
     for (let i = 0; i < 50; i++) {
-      promises.push(DigitalRupiahInstance.transfer(accounts[1], 1));
+      promises.push(DigitalRupeeInstance.transfer(accounts[1], 1));
     }
 
     const startTime = new Date().getTime();
@@ -83,13 +83,13 @@ contract("CBDC_Dapps", function (accounts) {
     );
   });
 
-  it("create 75 digital rupiah transfer", async () => {
+  it("create 75 digital rupee transfer", async () => {
     const CBDC_DappsInstance = await CBDC_Dapps.deployed();
 
-    const digitalRupiahAddress = await CBDC_DappsInstance.digitalRupiah();
-    const DigitalRupiahInstance = await DigitalRupiah.at(digitalRupiahAddress);
+    const digitalRupeeAddress = await CBDC_DappsInstance.digitalRupee();
+    const DigitalRupeeInstance = await DigitalRupee.at(digitalRupeeAddress);
 
-    await DigitalRupiahInstance.mint(
+    await DigitalRupeeInstance.mint(
       accounts[0],
       web3.utils.toWei("10000000000", "ether")
     );
@@ -97,7 +97,7 @@ contract("CBDC_Dapps", function (accounts) {
     const promises = [];
 
     for (let i = 0; i < 75; i++) {
-      promises.push(DigitalRupiahInstance.transfer(accounts[1], 1));
+      promises.push(DigitalRupeeInstance.transfer(accounts[1], 1));
     }
 
     const startTime = new Date().getTime();
@@ -110,13 +110,13 @@ contract("CBDC_Dapps", function (accounts) {
     );
   });
 
-  it("create 100 digital rupiah transfer", async () => {
+  it("create 100 digital rupee transfer", async () => {
     const CBDC_DappsInstance = await CBDC_Dapps.deployed();
 
-    const digitalRupiahAddress = await CBDC_DappsInstance.digitalRupiah();
-    const DigitalRupiahInstance = await DigitalRupiah.at(digitalRupiahAddress);
+    const digitalRupeeAddress = await CBDC_DappsInstance.digitalRupee();
+    const DigitalRupeeInstance = await DigitalRupee.at(digitalRupeeAddress);
 
-    await DigitalRupiahInstance.mint(
+    await DigitalRupeeInstance.mint(
       accounts[0],
       web3.utils.toWei("10000000000", "ether")
     );
@@ -124,7 +124,7 @@ contract("CBDC_Dapps", function (accounts) {
     const promises = [];
 
     for (let i = 0; i < 100; i++) {
-      promises.push(DigitalRupiahInstance.transfer(accounts[1], 1));
+      promises.push(DigitalRupeeInstance.transfer(accounts[1], 1));
     }
 
     const startTime = new Date().getTime();

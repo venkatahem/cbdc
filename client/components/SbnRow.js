@@ -5,7 +5,7 @@ import SBN_build from "../../build/contracts/SBN.json";
 import getContract from "../lib/getContract";
 
 import * as unixDate from "../helper_function/unixDate";
-import * as rupiahFormater from "../helper_function/rupiahFormater";
+import * as rupeeFormater from "../helper_function/rupeeFormater";
 
 import web3_utils from "web3-utils";
 
@@ -56,11 +56,11 @@ class SbnRow extends Component {
       this.state.maturity_date
     );
 
-    const unit_price_readable = rupiahFormater.Rp.format(
+    const unit_price_readable = rupeeFormater.Rp.format(
       web3_utils.fromWei(this.state.unit_price.toString(), "ether")
     );
 
-    const total_price = rupiahFormater.Rp.format(
+    const total_price = rupeeFormater.Rp.format(
       web3_utils.fromWei(this.state.unit_price.toString(), "ether") *
         this.state.owned_unit
     );
@@ -72,7 +72,7 @@ class SbnRow extends Component {
           <Table.Cell>{release_date_readable}</Table.Cell>
           <Table.Cell>{maturity_date_readable}</Table.Cell>
           <Table.Cell>
-            {rupiahFormater.whole_number.format(this.state.owned_unit)}
+            {rupeeFormater.whole_number.format(this.state.owned_unit)}
           </Table.Cell>
           <Table.Cell>{unit_price_readable}</Table.Cell>
           <Table.Cell>{total_price}</Table.Cell>

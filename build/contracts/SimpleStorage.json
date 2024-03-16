@@ -285,7 +285,7 @@
   "sourceMap": "58:203:10:-:0;;;;;;;;;;;;;;;;;;;",
   "deployedSourceMap": "58:203:10:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;112:62;;;;;;:::i;:::-;153:10;:14;112:62;;;180:79;216:7;242:10;180:79;;345:25:11;;;333:2;318:18;180:79:10;;;;;;;14:180:11;73:6;126:2;114:9;105:7;101:23;97:32;94:52;;;142:1;139;132:12;94:52;-1:-1:-1;165:23:11;;14:180;-1:-1:-1;14:180:11:o",
   "source": "// SPDX-License-Identifier: MIT\n\npragma solidity 0.8.18;\n\ncontract SimpleStorage {\n    uint256 storedData;\n\n    function set(uint256 x) public {\n        storedData = x;\n    }\n\n    function get() public view returns (uint256) {\n        return storedData;\n    }\n}\n",
-  "sourcePath": "/home/dkvhem/Documents/Final-Year-Project/test/test1/digitalrupiah/contracts/SimpleStorage.sol",
+  "sourcePath": "/home/dkvhem/Documents/Final-Year-Project/test/test1/digitalrupee/contracts/SimpleStorage.sol",
   "ast": {
     "absolutePath": "project:/contracts/SimpleStorage.sol",
     "exportedSymbols": {

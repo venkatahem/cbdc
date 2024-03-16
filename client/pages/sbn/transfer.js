@@ -20,8 +20,8 @@ import "react-calendar/dist/Calendar.css";
 import "react-clock/dist/Clock.css";
 
 import * as unixDate from "../../helper_function/unixDate";
-import * as rupiahFormater from "../../helper_function/rupiahFormater";
-import terbilang from "../../helper_function/rupiahTerbilang";
+import * as rupeeFormater from "../../helper_function/rupeeFormater";
+import terbilang from "../../helper_function/rupeeTerbilang";
 
 import getContract from "../../lib/getContract";
 import getWeb3Adresses from "../../lib/getWeb3Address";
@@ -184,7 +184,7 @@ class SBNTransfer extends Component {
             </Table.Cell>
             <Table.Cell>
               {selected_SBN_detail["initial_unit_price"]
-                ? rupiahFormater.Rp.format(
+                ? rupeeFormater.Rp.format(
                     web3_utils.fromWei(
                       selected_SBN_detail["initial_unit_price"].toString(),
                       "ether"

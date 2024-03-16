@@ -45,13 +45,13 @@ class AdminNavbar extends Component {
           </Menu.Item>
 
           <Menu.Item>
-            <Dropdown item text="Digital Rupiah" simple>
+            <Dropdown item text="Digital Rupee" simple>
               <Dropdown.Menu>
-                <Dropdown.Item as={"a"} href="/admin/digitalrupiah">
+                <Dropdown.Item as={"a"} href="/admin/digitalrupee">
                   Issuance
                 </Dropdown.Item>
 
-                <Dropdown.Item as={"a"} href="/admin/digitalrupiah/redemption">
+                <Dropdown.Item as={"a"} href="/admin/digitalrupee/redemption">
                   Redemption History
                 </Dropdown.Item>
               </Dropdown.Menu>

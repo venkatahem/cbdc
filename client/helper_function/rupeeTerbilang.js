@@ -1,4 +1,4 @@
-// https://github.com/herziwp/terbilang-rupiah
+// https://github.com/herziwp/terbilang-rupee
 
 var terbilang = (bilangan, satuan = "CBDC") => {
   bilangan = String(Math.trunc(bilangan));

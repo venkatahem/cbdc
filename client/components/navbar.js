@@ -37,13 +37,13 @@ class Navbar extends Component {
           <Menu.Item>
             <Dropdown item text="Digital Rupee" simple>
               <Dropdown.Menu>
-                <Dropdown.Item as={"a"} href="/digitalrupiah">
+                <Dropdown.Item as={"a"} href="/digitalrupee">
                   Account Activites
                 </Dropdown.Item>
-                <Dropdown.Item as={"a"} href="/digitalrupiah/transfer">
+                <Dropdown.Item as={"a"} href="/digitalrupee/transfer">
                   Transfer
                 </Dropdown.Item>
-                <Dropdown.Item as={"a"} href="/digitalrupiah/redeem">
+                <Dropdown.Item as={"a"} href="/digitalrupee/redeem">
                   Redeem
                 </Dropdown.Item>
               </Dropdown.Menu>

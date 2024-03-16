@@ -1,5 +1,5 @@
 const Web3 = require("web3");
-const DigitalRupiah_build = require("../../build/contracts/DigitalRupiah.json");
+const DigitalRupee_build = require("../../build/contracts/DigitalRupee.json");
 const CBDC_Dapps_build = require("../../build/contracts/CBDC_Dapps.json");
 
 const init = async () => {
@@ -12,9 +12,9 @@ const init = async () => {
     CBDC_Dapps_build.networks[netId].address
   );
 
-  const address = await cbdc.methods.digitalRupiah().call();
+  const address = await cbdc.methods.digitalRupee().call();
 
-  const token = new web3.eth.Contract(DigitalRupiah_build.abi, address);
+  const token = new web3.eth.Contract(DigitalRupee_build.abi, address);
 
   token.events.Redemption({}).on("data", (event) => console.log(event));
 };

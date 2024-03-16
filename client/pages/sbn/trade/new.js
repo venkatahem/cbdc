@@ -20,8 +20,8 @@ import "react-calendar/dist/Calendar.css";
 import "react-clock/dist/Clock.css";
 
 import * as unixDate from "../../../helper_function/unixDate";
-import * as rupiahFormater from "../../../helper_function/rupiahFormater";
-import terbilang from "../../../helper_function/rupiahTerbilang";
+import * as rupeeFormater from "../../../helper_function/rupeeFormater";
+import terbilang from "../../../helper_function/rupeeTerbilang";
 
 import getContract from "../../../lib/getContract";
 import getWeb3Adresses from "../../../lib/getWeb3Address";
@@ -265,7 +265,7 @@ class RequestsNew extends Component {
             </Table.Cell>
             <Table.Cell>
               {selected_SBN_detail["initial_unit_price"]
-                ? rupiahFormater.Rp.format(
+                ? rupeeFormater.Rp.format(
                     web3_utils.fromWei(
                       selected_SBN_detail["initial_unit_price"].toString(),
                       "ether"
@@ -339,16 +339,16 @@ class RequestsNew extends Component {
       selected_SBN_detail["initial_unit_price"].toString(),
       "ether"
     );
-    const unit_price_readable = rupiahFormater.Rp.format(unit_price);
+    const unit_price_readable = rupeeFormater.Rp.format(unit_price);
     const unit_price_terbilang = terbilang(unit_price);
 
     const requested_unit_price = total / unitAmount;
-    const requested_unit_price_readable = rupiahFormater.Rp.format(
+    const requested_unit_price_readable = rupeeFormater.Rp.format(
       requested_unit_price.toString()
     );
     const requested_unit_price_terbilang = terbilang(requested_unit_price);
 
-    const total_readable = rupiahFormater.Rp.format(total);
+    const total_readable = rupeeFormater.Rp.format(total);
     const total_terbilang = terbilang(total);
 
     const expired_readable = unixDate.format_timestamp(expired_datetime_unix);
@@ -494,13 +494,13 @@ class RequestsNew extends Component {
             <p>
               Price per unit : {"  "}
               {this.state.unitPrice
-                ? rupiahFormater.Rp.format(this.state.unitPrice)
+                ? rupeeFormater.Rp.format(this.state.unitPrice)
                 : 0}
             </p>
             <p>
               Total :{"  "}
               {this.state.total
-                ? rupiahFormater.Rp.format(this.state.total)
+                ? rupeeFormater.Rp.format(this.state.total)
                 : 0}
             </p>
 

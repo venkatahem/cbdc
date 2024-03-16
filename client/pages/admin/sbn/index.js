@@ -16,8 +16,8 @@ import {
 import ParticipantsDropdown from "../../../components/ParticipantsDropdown";
 import SBNDropdown from "../../../components/SBNDropdown";
 
-import * as rupiahFormater from "../../../helper_function/rupiahFormater";
-import terbilang from "../../../helper_function/rupiahTerbilang";
+import * as rupeeFormater from "../../../helper_function/rupeeFormater";
+import terbilang from "../../../helper_function/rupeeTerbilang";
 import * as unixDate from "../../../helper_function/unixDate";
 
 import getContract from "../../../lib/getContract";
@@ -206,7 +206,7 @@ class AdminSBN extends Component {
             <Table.Cell>Initial Unit Price</Table.Cell>
             <Table.Cell>
               {selected_SBN_detail["initial_unit_price"]
-                ? rupiahFormater.Rp.format(
+                ? rupeeFormater.Rp.format(
                     web3_utils.fromWei(
                       selected_SBN_detail["initial_unit_price"].toString(),
                       "ether"
@@ -274,7 +274,7 @@ class AdminSBN extends Component {
                 </Table.Row>
                 <Table.Row>
                   <Table.Cell>Mint Amount</Table.Cell>
-                  <Table.Cell>{`${rupiahFormater.whole_number.format(
+                  <Table.Cell>{`${rupeeFormater.whole_number.format(
                     mint_amount
                   )} unit(s)`}</Table.Cell>
                 </Table.Row>
@@ -341,7 +341,7 @@ class AdminSBN extends Component {
             Total Supply
           </Header>
           <Header as="h1" textAlign="center">
-            {rupiahFormater.whole_number.format(
+            {rupeeFormater.whole_number.format(
               selected_SBN_detail.total_supply
             )}
             <Header.Subheader>
@@ -358,7 +358,7 @@ class AdminSBN extends Component {
             Total Owned by Reserve Bank of India
           </Header>
           <Header as="h1" textAlign="center">
-            {rupiahFormater.whole_number.format(selected_SBN_detail.BI_owned)}
+            {rupeeFormater.whole_number.format(selected_SBN_detail.BI_owned)}
             <Header.Subheader>
               ({" "}
               {terbilang(
@@ -428,7 +428,7 @@ class AdminSBN extends Component {
         {/* <Divider />
         <Header as="h2" textAlign="center">
           Redemption
-          <Header.Subheader> Redeem Digital Rupiah</Header.Subheader>
+          <Header.Subheader> Redeem Digital Rupee</Header.Subheader>
         </Header>
         <Form
           onSubmit={this.onSubmitRedemption}

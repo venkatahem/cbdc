@@ -13,7 +13,7 @@ import Request_build from "../../build/contracts/Request.json";
 import getContract from "../lib/getContract";
 
 import * as unixDate from "../helper_function/unixDate";
-import * as rupiahFormater from "../helper_function/rupiahFormater";
+import * as rupeeFormater from "../helper_function/rupeeFormater";
 
 import {
   RequestStatus,
@@ -99,7 +99,7 @@ class SellRequestRow extends Component {
     const total_unit = request["sbnAmount"];
 
     const total_sell_price = web3_utils.fromWei(
-      request["rupiahAmount"].toString(),
+      request["rupeeAmount"].toString(),
       "ether"
     );
 
@@ -220,11 +220,11 @@ class SellRequestRow extends Component {
     } = this.state;
 
     const unit_price = web3_utils.fromWei(SBN_unit_price.toString(), "ether");
-    const unit_price_readable = rupiahFormater.Rp.format(unit_price);
+    const unit_price_readable = rupeeFormater.Rp.format(unit_price);
 
     const requested_unit_price = total_sell_price / total_unit;
 
-    const requested_unit_price_readable = rupiahFormater.Rp.format(
+    const requested_unit_price_readable = rupeeFormater.Rp.format(
       requested_unit_price.toString()
     );
 
@@ -234,7 +234,7 @@ class SellRequestRow extends Component {
     ).toFixed(2);
 
     const total_sell_price_readable =
-      rupiahFormater.Rp.format(total_sell_price);
+      rupeeFormater.Rp.format(total_sell_price);
 
     const expired_readable = unixDate.format_timestamp(request_expired);
 

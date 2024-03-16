@@ -5,7 +5,7 @@ import "openzeppelin-solidity/contracts/token/ERC20/ERC20.sol";
 import "./CBDC_Dapps.sol";
 import "./Participant_Struct.sol";
 
-contract DigitalRupiah is ERC20 {
+contract DigitalRupee is ERC20 {
     address private minter;
     CBDC_Dapps private cbdc;
 
@@ -15,7 +15,7 @@ contract DigitalRupiah is ERC20 {
     constructor(
         address _minter,
         address _cbdc
-    ) ERC20("Digital Rupiah", "DIDR") {
+    ) ERC20("Digital Rupee", "DIDR") {
         minter = _minter;
         cbdc = CBDC_Dapps(_cbdc);
     }

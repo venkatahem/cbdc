@@ -1,19 +1,19 @@
 import React, { Component } from "react";
 import { Table, Header, Divider, Segment, Popup } from "semantic-ui-react";
 
-import * as rupiahFormater from "../../helper_function/rupiahFormater";
-import terbilang from "../../helper_function/rupiahTerbilang";
+import * as rupeeFormater from "../../helper_function/rupeeFormater";
+import terbilang from "../../helper_function/rupeeTerbilang";
 import { format_timestamp_short } from "../../helper_function/unixDate";
 
 import getContract from "../../lib/getContract";
 import getWeb3Adresses from "../../lib/getWeb3Address";
 import CBDC_Dapps_build from "../../../build/contracts/CBDC_Dapps.json";
-import DigitalRupiah_build from "../../../build/contracts/DigitalRupiah.json";
+import DigitalRupee_build from "../../../build/contracts/DigitalRupee.json";
 import web3_utils from "web3-utils";
 
 import Layout from "../../components/layout";
 
-class DigitalRupiahIndex extends Component {
+class DigitalRupeeIndex extends Component {
   constructor(props) {
     super(props);
 
@@ -21,16 +21,16 @@ class DigitalRupiahIndex extends Component {
       web3: undefined,
       accounts: undefined,
       CBDC_Dapps: undefined,
-      DigitalRupiah: undefined,
+      DigitalRupee: undefined,
       userBalance: 0,
       sbnAddresses: [],
     };
   }
 
   async getUserBalance() {
-    const { DigitalRupiah, accounts } = this.state;
+    const { DigitalRupee, accounts } = this.state;
     try {
-      const balance = await DigitalRupiah.methods.balanceOf(accounts[0]).call();
+      const balance = await DigitalRupee.methods.balanceOf(accounts[0]).call();
       return balance;
     } catch {
       return null;
@@ -42,19 +42,19 @@ class DigitalRupiahIndex extends Component {
 
     const CBDC_Dapps = await getContract(web3, CBDC_Dapps_build);
     if (CBDC_Dapps !== undefined) {
-      const DigitalRupiahAddress = await CBDC_Dapps.methods
-        .digitalRupiah()
+      const DigitalRupeeAddress = await CBDC_Dapps.methods
+        .digitalRupee()
         .call();
 
-      const DigitalRupiah = await getContract(
+      const DigitalRupee = await getContract(
         web3,
-        DigitalRupiah_build,
-        DigitalRupiahAddress
+        DigitalRupee_build,
+        DigitalRupeeAddress
       );
 
       this.state = {
         accounts,
-        DigitalRupiah,
+        DigitalRupee,
       };
 
       const userBalance = await this.getUserBalance();
@@ -63,7 +63,7 @@ class DigitalRupiahIndex extends Component {
         .addressToParticipant(accounts[0])
         .call();
 
-      const send_raw = await DigitalRupiah.getPastEvents("Transfer", {
+      const send_raw = await DigitalRupee.getPastEvents("Transfer", {
         filter: { from: accounts[0] },
         fromBlock: 0,
         toBlock: "latest",
@@ -72,7 +72,7 @@ class DigitalRupiahIndex extends Component {
       const send = await Promise.all(
         send_raw.map(async (content, index) => {
           const block = await web3.eth.getBlock(content.blockHash);
-          const balance = await DigitalRupiah.methods
+          const balance = await DigitalRupee.methods
             .balanceOf(accounts[0])
             .call({}, content.blockHash);
           const timestamp = block.timestamp;
@@ -104,7 +104,7 @@ class DigitalRupiahIndex extends Component {
         })
       );
 
-      const receive_raw = await DigitalRupiah.getPastEvents("Transfer", {
+      const receive_raw = await DigitalRupee.getPastEvents("Transfer", {
         filter: { to: accounts[0] },
         fromBlock: 0,
         toBlock: "latest",
@@ -114,7 +114,7 @@ class DigitalRupiahIndex extends Component {
         receive_raw.map(async (content, index) => {
           const block = await web3.eth.getBlock(content.blockHash);
 
-          const balance = await DigitalRupiah.methods
+          const balance = await DigitalRupee.methods
             .balanceOf(accounts[0])
             .call({}, content.blockHash);
 
@@ -155,7 +155,7 @@ class DigitalRupiahIndex extends Component {
         web3,
         accounts,
         CBDC_Dapps,
-        DigitalRupiah,
+        DigitalRupee,
         userBalance,
         all_activities,
       });
@@ -167,13 +167,13 @@ class DigitalRupiahIndex extends Component {
       return this.state.all_activities.map((content, index) => {
         const value_readable =
           "D" +
-          rupiahFormater.IDR.format(
+          rupeeFormater.IDR.format(
             web3_utils.fromWei(content.value.toString(), "ether")
           );
 
         const balance_readable =
           "D" +
-          rupiahFormater.IDR.format(
+          rupeeFormater.IDR.format(
             web3_utils.fromWei(content.balance.toString(), "ether")
           );
         return (
@@ -267,7 +267,7 @@ class DigitalRupiahIndex extends Component {
             <Header sub textAlign="center">
               Digital Rupee Balance
             </Header>
-            {rupiahFormater.IDR.format(userBalance)}{" "}
+            {rupeeFormater.IDR.format(userBalance)}{" "}
             <Header.Subheader>( {terbilang(userBalance)} )</Header.Subheader>
           </Header>
         </Segment>
@@ -282,4 +282,4 @@ class DigitalRupiahIndex extends Component {
   }
 }
 
-export default DigitalRupiahIndex;
+export default DigitalRupeeIndex;

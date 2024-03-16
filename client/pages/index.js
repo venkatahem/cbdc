@@ -2,13 +2,13 @@ import React, { Component } from "react";
 import { Table, Header, Divider, Segment } from "semantic-ui-react";
 import SbnRow from "../components/SbnRow";
 
-import * as rupiahFormater from "../helper_function/rupiahFormater";
-import terbilang from "../helper_function/rupiahTerbilang";
+import * as rupeeFormater from "../helper_function/rupeeFormater";
+import terbilang from "../helper_function/rupeeTerbilang";
 
 import getContract from "../lib/getContract";
 import getWeb3Adresses from "../lib/getWeb3Address";
 import CBDC_Dapps_build from "../../build/contracts/CBDC_Dapps.json";
-import DigitalRupiah_build from "../../build/contracts/DigitalRupiah.json";
+import DigitalRupee_build from "../../build/contracts/DigitalRupee.json";
 import web3_utils from "web3-utils";
 
 import Layout from "../components/layout";
@@ -21,16 +21,16 @@ class Dapp extends Component {
       web3: undefined,
       accounts: undefined,
       CBDC_Dapps: undefined,
-      DigitalRupiah: undefined,
+      DigitalRupee: undefined,
       userBalance: 0,
       sbnAddresses: [],
     };
   }
 
   async getUserBalance() {
-    const { DigitalRupiah, accounts } = this.state;
+    const { DigitalRupee, accounts } = this.state;
     try {
-      const balance = await DigitalRupiah.methods.balanceOf(accounts[0]).call();
+      const balance = await DigitalRupee.methods.balanceOf(accounts[0]).call();
       return balance;
     } catch {
       return null;
@@ -42,22 +42,22 @@ class Dapp extends Component {
 
     const CBDC_Dapps = await getContract(web3, CBDC_Dapps_build);
     if (CBDC_Dapps !== undefined) {
-      const DigitalRupiahAddress = await CBDC_Dapps.methods
-        .digitalRupiah()
+      const DigitalRupeeAddress = await CBDC_Dapps.methods
+        .digitalRupee()
         .call();
 
-      console.log(DigitalRupiahAddress);
-      const DigitalRupiah = await getContract(
+      console.log(DigitalRupeeAddress);
+      const DigitalRupee = await getContract(
         web3,
-        DigitalRupiah_build,
-        DigitalRupiahAddress
+        DigitalRupee_build,
+        DigitalRupeeAddress
       );
 
       const sbnAddresses = await CBDC_Dapps.methods.getSbnAddresses().call();
 
       this.state = {
         accounts,
-        DigitalRupiah,
+        DigitalRupee,
       };
 
       const userBalance = await this.getUserBalance();
@@ -66,7 +66,7 @@ class Dapp extends Component {
         web3,
         accounts,
         CBDC_Dapps,
-        DigitalRupiah,
+        DigitalRupee,
         sbnAddresses,
         userBalance,
       });
@@ -126,7 +126,7 @@ class Dapp extends Component {
             <Header sub textAlign="center">
               Digital Rupee Balance
             </Header>
-            {rupiahFormater.IDR.format(userBalance)}{" "}
+            {rupeeFormater.IDR.format(userBalance)}{" "}
             <Header.Subheader>( {terbilang(userBalance)} )</Header.Subheader>
           </Header>
         </Segment>

@@ -22,7 +22,7 @@ import getWeb3Adresses from "../../../lib/getWeb3Address";
 import CBDC_Dapps_build from "../../../../build/contracts/CBDC_Dapps.json";
 import web3_utils from "web3-utils";
 
-import * as rupiahFormater from "../../../helper_function/rupiahFormater";
+import * as rupeeFormater from "../../../helper_function/rupeeFormater";
 import { format_date } from "../../../helper_function/unixDate";
 
 import Layout from "../../../components/layout";
@@ -199,7 +199,7 @@ class AdminSBNNew extends Component {
                     <b>Unit Price</b>
                   </Table.Cell>
                   <Table.Cell>
-                    {rupiahFormater.Rp.format(unit_price)}
+                    {rupeeFormater.Rp.format(unit_price)}
                   </Table.Cell>
                 </Table.Row>
 

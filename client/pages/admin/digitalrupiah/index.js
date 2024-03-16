@@ -15,25 +15,25 @@ import {
 } from "semantic-ui-react";
 import ParticipantsDropdown from "../../../components/ParticipantsDropdown";
 
-import * as rupiahFormater from "../../../helper_function/rupiahFormater";
-import terbilang from "../../../helper_function/rupiahTerbilang";
+import * as rupeeFormater from "../../../helper_function/rupeeFormater";
+import terbilang from "../../../helper_function/rupeeTerbilang";
 
 import getContract from "../../../lib/getContract";
 import getWeb3Adresses from "../../../lib/getWeb3Address";
 import CBDC_Dapps_build from "../../../../build/contracts/CBDC_Dapps.json";
-import DigitalRupiah_build from "../../../../build/contracts/DigitalRupiah.json";
+import DigitalRupee_build from "../../../../build/contracts/DigitalRupee.json";
 import web3_utils from "web3-utils";
 
 import Layout from "../../../components/layout";
 
-class AdminDigitalRupiah extends Component {
+class AdminDigitalRupee extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       accounts: undefined,
       CBDC_Dapps: undefined,
-      DigitalRupiah: undefined,
+      DigitalRupee: undefined,
       total_supply: 0,
       BI_owned: 0,
       mint_amount: 0,
@@ -50,17 +50,17 @@ class AdminDigitalRupiah extends Component {
     const CBDC_Dapps = await getContract(web3, CBDC_Dapps_build);
 
     if (CBDC_Dapps !== undefined) {
-      const DigitalRupiahAddress = await CBDC_Dapps.methods
-        .digitalRupiah()
+      const DigitalRupeeAddress = await CBDC_Dapps.methods
+        .digitalRupee()
         .call();
 
-      const DigitalRupiah = await getContract(
+      const DigitalRupee = await getContract(
         web3,
-        DigitalRupiah_build,
-        DigitalRupiahAddress
+        DigitalRupee_build,
+        DigitalRupeeAddress
       );
 
-      this.state.DigitalRupiah = DigitalRupiah;
+      this.state.DigitalRupee = DigitalRupee;
       this.state.CBDC_Dapps = CBDC_Dapps;
 
       const BI_owned = await this.updateBIOwned();
@@ -68,7 +68,7 @@ class AdminDigitalRupiah extends Component {
 
       this.setState({
         accounts,
-        DigitalRupiah,
+        DigitalRupee,
         total_supply,
         BI_owned,
       });
@@ -76,10 +76,10 @@ class AdminDigitalRupiah extends Component {
   }
 
   updateBIOwned = async () => {
-    const { CBDC_Dapps, DigitalRupiah } = this.state;
+    const { CBDC_Dapps, DigitalRupee } = this.state;
     const BI_address = await CBDC_Dapps.methods.BankIndonesiaAddress().call();
     const BI_owned = web3_utils.fromWei(
-      await DigitalRupiah.methods.balanceOf(BI_address).call(),
+      await DigitalRupee.methods.balanceOf(BI_address).call(),
       "ether"
     );
     this.state.BI_owned = BI_owned;
@@ -88,9 +88,9 @@ class AdminDigitalRupiah extends Component {
   };
 
   updateTotalSupply = async () => {
-    const { DigitalRupiah } = this.state;
+    const { DigitalRupee } = this.state;
     const total_supply = web3_utils.fromWei(
-      (await DigitalRupiah.methods.totalSupply().call()).toString(),
+      (await DigitalRupee.methods.totalSupply().call()).toString(),
       "ether"
     );
     this.state.total_supply = total_supply;
@@ -106,10 +106,10 @@ class AdminDigitalRupiah extends Component {
         positiveMessageIssuance: "",
       });
 
-      const { accounts, DigitalRupiah, selected_receiver, mint_amount } =
+      const { accounts, DigitalRupee, selected_receiver, mint_amount } =
         this.state;
 
-      const tx = await DigitalRupiah.methods
+      const tx = await DigitalRupee.methods
         .mint(
           selected_receiver.account,
           web3_utils.toWei(mint_amount.toString(), "ether")
@@ -149,9 +149,9 @@ class AdminDigitalRupiah extends Component {
         positiveMessageRedemption: "",
       });
 
-      const { accounts, DigitalRupiah, redemption_amount } = this.state;
+      const { accounts, DigitalRupee, redemption_amount } = this.state;
 
-      const tx = await DigitalRupiah.methods
+      const tx = await DigitalRupee.methods
         .burn(web3_utils.toWei(redemption_amount.toString(), "ether"))
         .send({
           from: accounts[0],
@@ -214,7 +214,7 @@ class AdminDigitalRupiah extends Component {
               <Table.Body>
                 <Table.Row>
                   <Table.Cell>Mint Amount</Table.Cell>
-                  <Table.Cell>{`${rupiahFormater.Rp.format(
+                  <Table.Cell>{`${rupeeFormater.Rp.format(
                     mint_amount
                   )}`}</Table.Cell>
                 </Table.Row>
@@ -278,7 +278,7 @@ class AdminDigitalRupiah extends Component {
             Total Supply
           </Header>
           <Header as="h1" textAlign="center">
-            {"D" + rupiahFormater.IDR.format(total_supply)}{" "}
+            {"D" + rupeeFormater.IDR.format(total_supply)}{" "}
             <Header.Subheader>( {terbilang(total_supply)} )</Header.Subheader>
           </Header>
 
@@ -286,7 +286,7 @@ class AdminDigitalRupiah extends Component {
             Total Owned by Reserve Bank of India
           </Header>
           <Header as="h1" textAlign="center">
-            {"D" + rupiahFormater.IDR.format(BI_owned)}{" "}
+            {"D" + rupeeFormater.IDR.format(BI_owned)}{" "}
             <Header.Subheader>( {terbilang(BI_owned)} )</Header.Subheader>
           </Header>
         </Segment>
@@ -343,14 +343,14 @@ class AdminDigitalRupiah extends Component {
         {/* <Divider />
         <Header as="h2" textAlign="center">
           Redemption
-          <Header.Subheader> Redeem Digital Rupiah</Header.Subheader>
+          <Header.Subheader> Redeem Digital Rupee</Header.Subheader>
         </Header>
         <Form
           onSubmit={this.onSubmitRedemption}
           error={!!this.state.errorMessageRedemption}
         >
           <Form.Field>
-            <label> Amount of Digital Rupiah to redeem </label>
+            <label> Amount of Digital Rupee to redeem </label>
             <Input
               onChange={(e) => {
                 this.setState({ redemption_amount: e.target.value });
@@ -358,7 +358,7 @@ class AdminDigitalRupiah extends Component {
               labelPosition="left"
               type="number"
               min="1"
-              placeholder={"Digital Rupiah Amount"}
+              placeholder={"Digital Rupee Amount"}
             >
               <Label>DIDR</Label>
               <input />
@@ -385,4 +385,4 @@ class AdminDigitalRupiah extends Component {
   }
 }
 
-export default AdminDigitalRupiah;
+export default AdminDigitalRupee;

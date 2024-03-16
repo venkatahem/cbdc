@@ -1,10 +1,10 @@
 const CBDC_Dapps = artifacts.require("CBDC_Dapps");
-const DigitalRupiah = artifacts.require("DigitalRupiah");
+const DigitalRupee = artifacts.require("DigitalRupee");
 
 module.exports = async function (deployer) {
   const CBDC_DappsInstance = await CBDC_Dapps.deployed();
-  const digitalRupiahAddress = await CBDC_DappsInstance.digitalRupiah();
-  const DigitalRupiahInstance = await DigitalRupiah.at(digitalRupiahAddress);
+  const digitalRupeeAddress = await CBDC_DappsInstance.digitalRupee();
+  const DigitalRupeeInstance = await DigitalRupee.at(digitalRupeeAddress);
 
   let accounts = await web3.eth.getAccounts();
   console.log(accounts);
@@ -14,7 +14,7 @@ module.exports = async function (deployer) {
       accounts[i],
       `Bank ${String.fromCharCode(i - 1 + 65)}`
     );
-    await DigitalRupiahInstance.mint(
+    await DigitalRupeeInstance.mint(
       accounts[i],
       web3.utils.toWei("10000000000", "ether")
     );

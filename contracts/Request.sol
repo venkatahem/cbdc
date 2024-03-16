@@ -12,9 +12,9 @@ enum RequestStatus {
 }
 
 contract Request {
-    IERC20 public digitalRupiah;
+    IERC20 public digitalRupee;
     address public buyer;
-    uint256 public rupiahAmount;
+    uint256 public rupeeAmount;
 
     IERC20 public SBN;
     address public seller;
@@ -24,9 +24,9 @@ contract Request {
     uint256 public Timestamp_expiredDate;
 
     constructor(
-        address _digitalRupiah,
+        address _digitalRupee,
         address _buyer,
-        uint256 _rupiahAmount,
+        uint256 _rupeeAmount,
         address _SBN,
         address _seller,
         uint256 _sbnAmount,
@@ -40,9 +40,9 @@ contract Request {
             "Expired date must not exceed 1 day from now"
         );
 
-        digitalRupiah = IERC20(_digitalRupiah);
+        digitalRupee = IERC20(_digitalRupee);
         buyer = _buyer;
-        rupiahAmount = _rupiahAmount;
+        rupeeAmount = _rupeeAmount;
 
         SBN = IERC20(_SBN);
         seller = _seller;
@@ -66,15 +66,15 @@ contract Request {
         require(status == RequestStatus.PendingBuyer, "Request was completed");
         require(block.timestamp <= Timestamp_expiredDate, "Request expired");
         require(
-            digitalRupiah.allowance(buyer, address(this)) >= rupiahAmount,
-            "Buyer's Digital Rupiah allowance is too low"
+            digitalRupee.allowance(buyer, address(this)) >= rupeeAmount,
+            "Buyer's Digital Rupee allowance is too low"
         );
         require(
             SBN.allowance(seller, address(this)) >= sbnAmount,
             "Seller's SBN allowance is too low"
         );
 
-        _safeTransferFrom(digitalRupiah, buyer, seller, rupiahAmount);
+        _safeTransferFrom(digitalRupee, buyer, seller, rupeeAmount);
         _safeTransferFrom(SBN, seller, buyer, sbnAmount);
 
         status = RequestStatus.Accepted;

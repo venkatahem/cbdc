@@ -1,12 +1,12 @@
 const CBDC_Dapps = artifacts.require("CBDC_Dapps");
-const DigitalRupiah = artifacts.require("DigitalRupiah");
+const DigitalRupee = artifacts.require("DigitalRupee");
 const SBN = artifacts.require("SBN");
 const Request = artifacts.require("Request");
 
 module.exports = async function (deployer) {
   const CBDC_DappsInstance = await CBDC_Dapps.deployed();
-  const digitalRupiahAddress = await CBDC_DappsInstance.digitalRupiah();
-  const DigitalRupiahInstance = await DigitalRupiah.at(digitalRupiahAddress);
+  const digitalRupeeAddress = await CBDC_DappsInstance.digitalRupee();
+  const DigitalRupeeInstance = await DigitalRupee.at(digitalRupeeAddress);
 
   const accounts = await web3.eth.getAccounts();
 
@@ -21,7 +21,7 @@ module.exports = async function (deployer) {
   //     address _SBN,
   //     address _buyer,
   //     uint256 _sbnAmount,
-  //     uint256 _rupiahAmount,
+  //     uint256 _rupeeAmount,
   //     uint256 _expiredDate
   // };
   // sell 100 unit of SBR010 from accounts[1] (Bank Mandiri) to accounts[2] (Bank BCA) for a total of Rp105.000.000. The seller does not approve their SBN yet

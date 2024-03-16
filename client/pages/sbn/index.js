@@ -3,7 +3,7 @@ import { Table, Header, Divider, Popup } from "semantic-ui-react";
 import SbnRow from "../../components/SbnRow";
 import SBNDropdown from "../../components/SBNDropdown";
 
-import * as rupiahFormater from "../../helper_function/rupiahFormater";
+import * as rupeeFormater from "../../helper_function/rupeeFormater";
 import { format_timestamp_short } from "../../helper_function/unixDate";
 
 import getContract from "../../lib/getContract";
@@ -125,11 +125,11 @@ class SBNIndex extends Component {
             textAlign="right"
             style={content.send ? { color: "#FA0100" } : { color: "#1188BD" }}
           >
-            <b>{rupiahFormater.whole_number.format(content.value)}</b>
+            <b>{rupeeFormater.whole_number.format(content.value)}</b>
           </Table.Cell>
           <Table.Cell>{content.send ? "Send" : "Receive"}</Table.Cell>
           <Table.Cell textAlign="right">
-            {rupiahFormater.whole_number.format(content.balance)}
+            {rupeeFormater.whole_number.format(content.balance)}
           </Table.Cell>
         </Table.Row>
       );

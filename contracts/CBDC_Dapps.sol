@@ -2,7 +2,7 @@
 pragma solidity 0.8.18;
 
 import "./Participant_Struct.sol";
-import "./DigitalRupiah.sol";
+import "./DigitalRupee.sol";
 import "./Request.sol";
 import "./SBN.sol";
 
@@ -22,12 +22,12 @@ contract CBDC_Dapps {
         addParticipant(msg.sender, "Central Bank");
     }
 
-    // create DigitalRupiah
+    // create DigitalRupee
 
-    DigitalRupiah public digitalRupiah;
+    DigitalRupee public digitalRupee;
 
-    function createDigitalRupiah() public isBankIndonesia {
-        digitalRupiah = new DigitalRupiah(BankIndonesiaAddress, address(this));
+    function createDigitalRupee() public isBankIndonesia {
+        digitalRupee = new DigitalRupee(BankIndonesiaAddress, address(this));
     }
 
     // modifying participant
@@ -136,7 +136,7 @@ contract CBDC_Dapps {
         address indexed seller,
         address indexed SBN,
         uint256 sbnAmount,
-        uint256 rupiahAmount,
+        uint256 rupeeAmount,
         uint256 expired_date,
         Request requestAddress
     );
@@ -145,7 +145,7 @@ contract CBDC_Dapps {
         address _SBN,
         address _buyer,
         uint256 _sbnAmount,
-        uint256 _rupiahAmount,
+        uint256 _rupeeAmount,
         uint256 _expiredDate
     ) public callerIsActiveParticipant {
         require(
@@ -153,13 +153,13 @@ contract CBDC_Dapps {
             "buyer is not an active participant"
         );
 
-        address _digitalRupiah = address(digitalRupiah);
+        address _digitalRupee = address(digitalRupee);
         address _seller = msg.sender;
 
         Request _request = new Request({
-            _digitalRupiah: _digitalRupiah,
+            _digitalRupee: _digitalRupee,
             _buyer: _buyer,
-            _rupiahAmount: _rupiahAmount,
+            _rupeeAmount: _rupeeAmount,
             _SBN: _SBN,
             _seller: _seller,
             _sbnAmount: _sbnAmount,
@@ -171,7 +171,7 @@ contract CBDC_Dapps {
             _seller,
             _SBN,
             _sbnAmount,
-            _rupiahAmount,
+            _rupeeAmount,
             _expiredDate,
             _request
         );

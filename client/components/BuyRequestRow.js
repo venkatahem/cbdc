@@ -18,7 +18,7 @@ import Request_build from "../../build/contracts/Request.json";
 import getContract from "../lib/getContract";
 
 import * as unixDate from "../helper_function/unixDate";
-import * as rupiahFormater from "../helper_function/rupiahFormater";
+import * as rupeeFormater from "../helper_function/rupeeFormater";
 import {
   RequestStatus,
   ReadableStatus,
@@ -26,7 +26,7 @@ import {
 } from "../helper_function/RequestStatus";
 
 import web3_utils from "web3-utils";
-import terbilang from "../helper_function/rupiahTerbilang";
+import terbilang from "../helper_function/rupeeTerbilang";
 
 class BuyRequestRow extends Component {
   constructor(props) {
@@ -53,7 +53,7 @@ class BuyRequestRow extends Component {
   }
 
   async getStatus() {
-    const { accounts, DigitalRupiah } = this.props;
+    const { accounts, DigitalRupee } = this.props;
     const {
       SBN,
       seller_address,
@@ -84,14 +84,14 @@ class BuyRequestRow extends Component {
         return status;
       }
 
-      // const DigitalRupiah_allowance = await this.getAllowanceAmount(
-      //   DigitalRupiah,
+      // const DigitalRupee_allowance = await this.getAllowanceAmount(
+      //   DigitalRupee,
       //   accounts[0],
       //   request_address
       // );
 
       // if (
-      //   DigitalRupiah_allowance <
+      //   DigitalRupee_allowance <
       //   web3_utils.toWei(total_buy_price.toString(), "ether")
       // ) {
       //   status = ReadableStatus.PendingBuyerApproval;
@@ -122,7 +122,7 @@ class BuyRequestRow extends Component {
     const total_unit = request["sbnAmount"];
 
     const total_buy_price = web3_utils.fromWei(
-      request["rupiahAmount"].toString(),
+      request["rupeeAmount"].toString(),
       "ether"
     );
 
@@ -175,10 +175,10 @@ class BuyRequestRow extends Component {
   //   try {
   //     this.setState({ loading: true, errorMessage: "", positiveMessage: "" });
 
-  //     const { accounts, DigitalRupiah } = this.props;
+  //     const { accounts, DigitalRupee } = this.props;
   //     const { request_address, total_buy_price, total_unit } = this.state;
 
-  //     const txhash = await DigitalRupiah.methods
+  //     const txhash = await DigitalRupee.methods
   //       .approve(
   //         request_address,
   //         web3_utils.toWei(total_buy_price.toString(), "ether")
@@ -220,11 +220,11 @@ class BuyRequestRow extends Component {
     } = this.state;
 
     const unit_price = web3_utils.fromWei(SBN_unit_price.toString(), "ether");
-    const unit_price_readable = rupiahFormater.Rp.format(unit_price);
+    const unit_price_readable = rupeeFormater.Rp.format(unit_price);
     const unit_price_terbilang = terbilang(unit_price);
 
     const requested_unit_price = total_buy_price / total_unit;
-    const requested_unit_price_readable = rupiahFormater.Rp.format(
+    const requested_unit_price_readable = rupeeFormater.Rp.format(
       requested_unit_price.toString()
     );
     const requested_unit_price_terbilang = terbilang(requested_unit_price);
@@ -234,7 +234,7 @@ class BuyRequestRow extends Component {
       100
     ).toFixed(2);
 
-    const total_buy_price_readable = rupiahFormater.Rp.format(total_buy_price);
+    const total_buy_price_readable = rupeeFormater.Rp.format(total_buy_price);
     const total_buy_price_terbilang = terbilang(total_buy_price);
 
     return (
@@ -328,13 +328,13 @@ class BuyRequestRow extends Component {
     try {
       this.setState({ loading: true, errorMessage: "", positiveMessage: "" });
 
-      const { accounts, DigitalRupiah } = this.props;
+      const { accounts, DigitalRupee } = this.props;
       const { request_contract, request_address, total_buy_price } = this.state;
 
       let tx1, tx2;
 
       this.setState({ loadingStatus: "Waiting DIDR Approval..." });
-      await DigitalRupiah.methods
+      await DigitalRupee.methods
         .approve(
           request_address,
           web3_utils.toWei(total_buy_price.toString(), "ether")
@@ -411,11 +411,11 @@ class BuyRequestRow extends Component {
     } = this.state;
 
     const unit_price = web3_utils.fromWei(SBN_unit_price.toString(), "ether");
-    const unit_price_readable = rupiahFormater.Rp.format(unit_price);
+    const unit_price_readable = rupeeFormater.Rp.format(unit_price);
 
     const requested_unit_price = total_buy_price / total_unit;
 
-    const requested_unit_price_readable = rupiahFormater.Rp.format(
+    const requested_unit_price_readable = rupeeFormater.Rp.format(
       requested_unit_price.toString()
     );
 
@@ -424,7 +424,7 @@ class BuyRequestRow extends Component {
       100
     ).toFixed(2);
 
-    const total_buy_price_readable = rupiahFormater.Rp.format(total_buy_price);
+    const total_buy_price_readable = rupeeFormater.Rp.format(total_buy_price);
 
     const expired_readable = unixDate.format_timestamp(request_expired);
 

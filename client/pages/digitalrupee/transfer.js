@@ -15,18 +15,18 @@ import {
 } from "semantic-ui-react";
 import ParticipantsDropdown from "../../components/ParticipantsDropdown";
 
-import * as rupiahFormater from "../../helper_function/rupiahFormater";
-import terbilang from "../../helper_function/rupiahTerbilang";
+import * as rupeeFormater from "../../helper_function/rupeeFormater";
+import terbilang from "../../helper_function/rupeeTerbilang";
 
 import getContract from "../../lib/getContract";
 import getWeb3Adresses from "../../lib/getWeb3Address";
 import CBDC_Dapps_build from "../../../build/contracts/CBDC_Dapps.json";
-import DigitalRupiah_build from "../../../build/contracts/DigitalRupiah.json";
+import DigitalRupee_build from "../../../build/contracts/DigitalRupee.json";
 import web3_utils from "web3-utils";
 
 import Layout from "../../components/layout";
 
-class Redeem extends Component {
+class Transfer extends Component {
   constructor(props) {
     super(props);
 
@@ -34,20 +34,20 @@ class Redeem extends Component {
       web3: undefined,
       accounts: undefined,
       CBDC_Dapps: undefined,
-      DigitalRupiah: undefined,
+      DigitalRupee: undefined,
       userBalance: 0,
       open: false,
       setOpen: false,
-      redeemAmount: 0,
+      transferAmount: 0,
       loading: false,
     };
   }
 
   async getUserBalance() {
-    const { DigitalRupiah, accounts } = this.state;
+    const { DigitalRupee, accounts } = this.state;
 
     try {
-      const balance = await DigitalRupiah.methods.balanceOf(accounts[0]).call();
+      const balance = await DigitalRupee.methods.balanceOf(accounts[0]).call();
       return balance;
     } catch (e) {
       return;
@@ -61,18 +61,18 @@ class Redeem extends Component {
 
     const CBDC_Dapps = await getContract(web3, CBDC_Dapps_build);
     if (CBDC_Dapps !== undefined) {
-      const DigitalRupiahAddress = await CBDC_Dapps.methods
-        .digitalRupiah()
+      const DigitalRupeeAddress = await CBDC_Dapps.methods
+        .digitalRupee()
         .call();
-      const DigitalRupiah = await getContract(
+      const DigitalRupee = await getContract(
         web3,
-        DigitalRupiah_build,
-        DigitalRupiahAddress
+        DigitalRupee_build,
+        DigitalRupeeAddress
       );
 
       this.state = {
         accounts,
-        DigitalRupiah,
+        DigitalRupee,
       };
 
       const userBalance = await this.getUserBalance();
@@ -81,23 +81,30 @@ class Redeem extends Component {
         web3,
         accounts,
         CBDC_Dapps,
-        DigitalRupiah,
+        DigitalRupee,
         userBalance,
       });
     }
   }
 
+  onChangeParticipantsDropdown = (event, data) => {
+    this.setState({
+      selected_receiver: data.value,
+    });
+  };
+
   checkForm = () => {
     this.setState({ errorMessage: "", positiveMessage: "" });
 
-    const { redeemAmount } = this.state;
+    const { selected_receiver, transferAmount } = this.state;
     let userBalance = userBalance
       ? web3_utils.fromWei(userBalance, "ether")
       : "";
 
     if (
-      parseInt(redeemAmount) > 0 &&
-      parseInt(redeemAmount) <= parseInt(userBalance)
+      selected_receiver != undefined &&
+      parseInt(transferAmount) > 0 &&
+      parseInt(transferAmount) <= parseInt(userBalance)
     )
       return true;
     else {
@@ -110,10 +117,15 @@ class Redeem extends Component {
     try {
       this.setState({ loading: true, errorMessage: "", positiveMessage: "" });
 
-      const { accounts, DigitalRupiah, redeemAmount } = this.state;
+      const { accounts, DigitalRupee, selected_receiver, transferAmount } =
+        this.state;
 
-      const txhash = await DigitalRupiah.methods
-        .redeem(web3_utils.toWei(redeemAmount.toString(), "ether"))
+      const destinationAddress = selected_receiver["account"];
+      const txhash = await DigitalRupee.methods
+        .transfer(
+          destinationAddress,
+          web3_utils.toWei(transferAmount.toString(), "ether")
+        )
         .send({
           from: accounts[0],
         });
@@ -122,7 +134,7 @@ class Redeem extends Component {
 
       this.setState({
         positiveMessage:
-          "Redeem completed! \n Transaction hash: " + txhash.transactionHash,
+          "Transfer completed! \n Transaction hash: " + txhash.transactionHash,
         userBalance: balance,
       });
     } catch (e) {
@@ -136,11 +148,19 @@ class Redeem extends Component {
     this.setState({ loading: false });
   };
 
+  renderDropdown() {
+    return (
+      <ParticipantsDropdown
+        onChange={this.onChangeParticipantsDropdown}
+      ></ParticipantsDropdown>
+    );
+  }
+
   setOpen(boolean) {
     this.setState({ open: boolean });
   }
   renderModal() {
-    const { open, redeemAmount, loading } = this.state;
+    const { open, selected_receiver, transferAmount, loading } = this.state;
     return (
       <Modal
         onClose={() => this.setOpen(false)}
@@ -154,20 +174,36 @@ class Redeem extends Component {
         <Modal.Header>Transaction Review</Modal.Header>
         <Modal.Content>
           <Modal.Description>
-            <Header>Redeem Detail</Header>
+            <Header>Transfer Detail</Header>
             <Table celled>
               <Table.Body>
                 <Table.Row>
                   <Table.Cell>
-                    <b>Redeem Amount</b>
+                    <b>Receiver Address </b>
                   </Table.Cell>
                   <Table.Cell>
-                    {"D" + rupiahFormater.IDR.format(redeemAmount)}
+                    {selected_receiver ? selected_receiver.account : null}
+                  </Table.Cell>
+                </Table.Row>
+                <Table.Row>
+                  <Table.Cell>
+                    <b>Receiver Name</b>
+                  </Table.Cell>
+                  <Table.Cell>
+                    {selected_receiver ? selected_receiver.name : null}
+                  </Table.Cell>
+                </Table.Row>
+                <Table.Row>
+                  <Table.Cell>
+                    <b>Transfer Amount</b>
+                  </Table.Cell>
+                  <Table.Cell>
+                    {"D" + rupeeFormater.IDR.format(transferAmount)}
                   </Table.Cell>
                 </Table.Row>
                 <Table.Row>
                   <Table.Cell></Table.Cell>
-                  <Table.Cell>{terbilang(redeemAmount)}</Table.Cell>
+                  <Table.Cell>{terbilang(transferAmount)}</Table.Cell>
                 </Table.Row>
               </Table.Body>
             </Table>
@@ -212,23 +248,30 @@ class Redeem extends Component {
     return (
       <Layout>
         <Header dividing as="h1" textAlign="center">
-          REDEEM DIGITAL RUPEE
+          TRANSFER DIGITAL RUPEE
         </Header>
 
         <Header as="h1" textAlign="center">
           <Header sub textAlign="center">
             Current Balance
           </Header>
-          {"D" + rupiahFormater.IDR.format(userBalance)}{" "}
+          {"D" + rupeeFormater.IDR.format(userBalance)}{" "}
           <Header.Subheader>( {terbilang(userBalance)} )</Header.Subheader>
         </Header>
         <Divider />
 
         <Form error={!!this.state.errorMessage}>
           <Form.Field>
+            <Header as="h3"> Select Receiver: </Header>
+            <Popup content="Test" trigger={this.renderDropdown()} />
+          </Form.Field>
+
+          <Form.Field>
             <Header as="h3"> Input Amount: </Header>
             <Input
-              onChange={(e) => this.setState({ redeemAmount: e.target.value })}
+              onChange={(e) =>
+                this.setState({ transferAmount: e.target.value })
+              }
               labelPosition="left"
               type="number"
               min={1}
@@ -240,8 +283,6 @@ class Redeem extends Component {
               <input />
             </Input>
           </Form.Field>
-
-          {this.renderModal()}
 
           <Message
             error
@@ -255,6 +296,8 @@ class Redeem extends Component {
             content={this.state.positiveMessage}
             style={{ "word-break": "break-all" }}
           />
+
+          {this.renderModal()}
         </Form>
         <Divider />
       </Layout>
@@ -262,4 +305,4 @@ class Redeem extends Component {
   }
 }
 
-export default Redeem;
+export default Transfer;
