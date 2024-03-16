@@ -90,10 +90,8 @@ class Redeem extends Component {
   checkForm = () => {
     this.setState({ errorMessage: "", positiveMessage: "" });
 
-    const { redeemAmount } = this.state;
-    let userBalance = userBalance
-      ? web3_utils.fromWei(userBalance, "ether")
-      : "";
+    const { redeemAmount, userBalance } = this.state;
+    userBalance = userBalance ? web3_utils.fromWei(userBalance, "ether") : "";
 
     if (
       parseInt(redeemAmount) > 0 &&
@@ -212,7 +210,7 @@ class Redeem extends Component {
     return (
       <Layout>
         <Header dividing as="h1" textAlign="center">
-          REDEEM DIGITAL RUPIAH
+          REDEEM DIGITAL RUPEE
         </Header>
 
         <Header as="h1" textAlign="center">

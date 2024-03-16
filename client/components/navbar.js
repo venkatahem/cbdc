@@ -35,7 +35,7 @@ class Navbar extends Component {
           </Menu.Item>
 
           <Menu.Item>
-            <Dropdown item text="Digital Rupiah" simple>
+            <Dropdown item text="Digital Rupee" simple>
               <Dropdown.Menu>
                 <Dropdown.Item as={"a"} href="/digitalrupiah">
                   Account Activites

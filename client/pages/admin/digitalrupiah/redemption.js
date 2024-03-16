@@ -144,7 +144,7 @@ class RedemptionDigitalRupiah extends Component {
     return (
       <Layout>
         <Header as="h1" textAlign="center">
-          Digital Rupiah Redemption History
+          Digital Rupee Redemption History
         </Header>
 
         <Divider />

@@ -355,7 +355,7 @@ class AdminSBN extends Component {
           </Header>
 
           <Header as="h3" textAlign="center">
-            Total Owned by Bank Indonesia
+            Total Owned by Reserve Bank of India
           </Header>
           <Header as="h1" textAlign="center">
             {rupiahFormater.whole_number.format(selected_SBN_detail.BI_owned)}

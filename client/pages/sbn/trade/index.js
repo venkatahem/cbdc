@@ -220,7 +220,7 @@ class Requests extends Component {
                     <Popup.Content>
                       This table shows previous sell requests that you have
                       made. In this case, you sell your SBN in exchange for
-                      Digital Rupiah
+                      Digital Rupee
                       <br></br>
                       There are 2 possible actions available:
                       <br></br> <br></br>
@@ -298,7 +298,7 @@ class Requests extends Component {
                     <Popup.Header> Buy Requests</Popup.Header>
                     <Popup.Content>
                       This table shows sell requests offered to you. In this
-                      case, you buy their SBN using your Digital Rupiah
+                      case, you buy their SBN using your Digital Rupee
                       <br></br>
                       There are 2 possible actions available:
                       <br></br> <br></br>
@@ -320,7 +320,7 @@ class Requests extends Component {
                       </Button>
                       <p>
                         Press this button to accept the request. Once accepted,
-                        you get the SBN in exchange for your Digital Rupiah as
+                        you get the SBN in exchange for your Digital Rupee as
                         stated in the request.
                       </p>
                     </Popup.Content>

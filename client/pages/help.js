@@ -42,17 +42,17 @@ class Help extends Component {
         </Container>
         <br></br>
         <Container text>
-          <Header as="h2">Transfer Digital Rupiah</Header>
-          This feature allows you to transfer digital rupiah to other active
+          <Header as="h2">Transfer Digital Rupee</Header>
+          This feature allows you to transfer digital rupee to other active
           participant. To use this feature, do as follows:
           <List ordered>
             <List.Item>
-              Open Transfer Digital Rupiah page in Digital Rupiah - Transfer.
+              Open Transfer Digital Rupee page in Digital Rupee - Transfer.
             </List.Item>
             <List.Item>Select a Receiver.</List.Item>
             <List.Item>
               Input the amount to transfer. Amount must me greater than 0 and
-              less than your current Digital Rupiah balance.
+              less than your current Digital Rupee balance.
             </List.Item>
             <List.Item>
               Click Submit, and a confirmation pop up should be shown
@@ -95,7 +95,7 @@ class Help extends Component {
             </List.Item>
             <List.Item>Wait until the transaction is completed.</List.Item>
             <List.Item>
-              You can view your transaction History in Digital Rupiah-Account
+              You can view your transaction History in Digital Rupee-Account
               Activities
             </List.Item>
           </List>
@@ -103,8 +103,8 @@ class Help extends Component {
 
         <br></br>
         <Container text>
-          <Header as="h2">Transfer Digital Rupiah</Header>
-          This feature allows you to transfer digital rupiah to other active
+          <Header as="h2">Transfer Digital Rupee</Header>
+          This feature allows you to transfer digital rupee to other active
           participant. To use this feature, do as follows:
           <List ordered>
             <List.Item></List.Item>
@@ -122,8 +122,8 @@ class Help extends Component {
 
         <br></br>
         <Container text>
-          <Header as="h2">Transfer Digital Rupiah</Header>
-          This feature allows you to transfer digital rupiah to other active
+          <Header as="h2">Transfer Digital Rupee</Header>
+          This feature allows you to transfer digital rupee to other active
           participant. To use this feature, do as follows:
           <List ordered>
             <List.Item></List.Item>

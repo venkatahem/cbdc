@@ -123,7 +123,7 @@ class AdminDigitalRupiah extends Component {
 
       this.setState({
         positiveMessageIssuance:
-          "Digital Rupiah Issuance completed! Transaction hash: " +
+          "Digital Rupee Issuance completed! Transaction hash: " +
           tx.transactionHash,
       });
     } catch (e) {
@@ -162,7 +162,7 @@ class AdminDigitalRupiah extends Component {
 
       this.setState({
         positiveMessageRedemption:
-          "Digital Rupiah redemption completed! Transaction hash: " +
+          "Digital Rupee redemption completed! Transaction hash: " +
           tx.transactionHash,
       });
     } catch (e) {
@@ -209,7 +209,7 @@ class AdminDigitalRupiah extends Component {
         <Modal.Header>Transaction Review</Modal.Header>
         <Modal.Content>
           <Modal.Description>
-            <Header>Issue Digital Rupiah Detail</Header>
+            <Header>Issue Digital Rupee Detail</Header>
             <Table celled>
               <Table.Body>
                 <Table.Row>
@@ -271,7 +271,7 @@ class AdminDigitalRupiah extends Component {
     return (
       <Layout>
         <Header as="h2" textAlign="center">
-          Digital Rupiah
+          Digital Rupee
         </Header>
         <Segment>
           <Header as="h3" textAlign="center">
@@ -283,7 +283,7 @@ class AdminDigitalRupiah extends Component {
           </Header>
 
           <Header as="h3" textAlign="center">
-            Total Owned by Bank Indonesia
+            Total Owned by Reserve Bank of India
           </Header>
           <Header as="h1" textAlign="center">
             {"D" + rupiahFormater.IDR.format(BI_owned)}{" "}
@@ -293,7 +293,7 @@ class AdminDigitalRupiah extends Component {
         <Divider />
         <Header as="h2" textAlign="center">
           Issuance
-          <Header.Subheader> Mint Digital Rupiah</Header.Subheader>
+          <Header.Subheader> Mint Digital Rupee</Header.Subheader>
         </Header>
 
         <Form error={!!this.state.errorMessageIssuance}>
@@ -310,7 +310,7 @@ class AdminDigitalRupiah extends Component {
           </Form.Field>
 
           <Form.Field>
-            <label> Amount of Digital Rupiah to mint </label>
+            <label> Amount of Digital Rupee to mint </label>
             <Input
               onChange={(e) => {
                 this.setState({ mint_amount: e.target.value });
@@ -318,7 +318,7 @@ class AdminDigitalRupiah extends Component {
               labelPosition="left"
               type="number"
               min="1"
-              placeholder={"Digital Rupiah Amount"}
+              placeholder={"Digital Rupee Amount"}
             >
               <Label>DIDR</Label>
               <input />

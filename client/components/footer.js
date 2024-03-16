@@ -22,9 +22,9 @@ class Footer extends Component {
           <Menu.Item as={"a"} href="/help">
             Help
           </Menu.Item>
-          <Menu.Item as={"a"} href="/about">
+          {/* <Menu.Item as={"a"} href="/about">
             About Us
-          </Menu.Item>
+          </Menu.Item> */}
         </Menu.Menu>
       </Menu>
     );

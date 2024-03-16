@@ -259,13 +259,13 @@ class DigitalRupiahIndex extends Component {
     return (
       <Layout>
         <Header as="h1" textAlign="center">
-          Digital Rupiah Account Information
+          Digital Rupee Account Information
         </Header>
 
         <Segment>
           <Header as="h1" textAlign="center">
             <Header sub textAlign="center">
-              Digital Rupiah Balance
+              Digital Rupee Balance
             </Header>
             {"D" + rupiahFormater.IDR.format(userBalance)}{" "}
             <Header.Subheader>( {terbilang(userBalance)} )</Header.Subheader>
@@ -273,7 +273,7 @@ class DigitalRupiahIndex extends Component {
         </Segment>
         <Divider />
         <Header as="h2" textAlign="center">
-          Latest Digital Rupiah Account Activities
+          Latest Digital Rupee Account Activities
         </Header>
         <br></br>
         {this.renderTable()}

@@ -1,6 +1,6 @@
 // https://github.com/herziwp/terbilang-rupiah
 
-var terbilang = (bilangan, satuan = "rupiah") => {
+var terbilang = (bilangan, satuan = "CBDC") => {
   bilangan = String(Math.trunc(bilangan));
   var angka = new Array(
     "0",
