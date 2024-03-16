@@ -81,7 +81,7 @@ class Layout extends Component {
           ></Navbar>
         )}
         <br></br>
-        <Container style={{ minHeight: 610 }}>{this.props.children}</Container>
+        <Container style={{ minHeight: 757 }}>{this.props.children}</Container>
         <br></br> <br></br>
         <Footer></Footer>
       </>

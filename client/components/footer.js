@@ -13,7 +13,7 @@ class Footer extends Component {
 
   render() {
     return (
-      <Menu size="large" color={"blue"} inverted borderless stackable>
+      <Menu size="large" color={"teal"} inverted borderless stackable>
         <Menu.Item>
           <Container textAlign="left">Central Bank I CBDC&copy;</Container>
         </Menu.Item>

@@ -22,7 +22,7 @@ class Navbar extends Component {
   render() {
     return (
       <div>
-        <Menu size="medium" color={"blue"} inverted stackable borderless>
+        <Menu size="medium" color={"teal"} inverted stackable borderless>
           <Menu.Item name="home">
             <a href="/">
               <NextJSImage
@@ -50,7 +50,7 @@ class Navbar extends Component {
             </Dropdown>
           </Menu.Item>
 
-          <Menu.Item>
+          {/* <Menu.Item>
             <Dropdown item text="SBN" simple>
               <Dropdown.Menu>
                 <Dropdown.Item as={"a"} href="/sbn">
@@ -69,11 +69,11 @@ class Navbar extends Component {
                 </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
-          </Menu.Item>
+          </Menu.Item> */}
 
-          <Menu.Item as={"a"} href="/sbn/trade/new">
+          {/* <Menu.Item as={"a"} href="/sbn/trade/new">
             Create New Sell Request
-          </Menu.Item>
+          </Menu.Item> */}
 
           <Menu.Menu position="right">
             <Menu.Item>

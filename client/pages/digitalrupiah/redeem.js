@@ -90,8 +90,10 @@ class Redeem extends Component {
   checkForm = () => {
     this.setState({ errorMessage: "", positiveMessage: "" });
 
-    const { redeemAmount, userBalance } = this.state;
-    userBalance = userBalance ? web3_utils.fromWei(userBalance, "ether") : "";
+    const { redeemAmount } = this.state;
+    let userBalance = userBalance
+      ? web3_utils.fromWei(userBalance, "ether")
+      : "";
 
     if (
       parseInt(redeemAmount) > 0 &&

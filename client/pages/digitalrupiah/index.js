@@ -267,7 +267,7 @@ class DigitalRupiahIndex extends Component {
             <Header sub textAlign="center">
               Digital Rupee Balance
             </Header>
-            {"D" + rupiahFormater.IDR.format(userBalance)}{" "}
+            {rupiahFormater.IDR.format(userBalance)}{" "}
             <Header.Subheader>( {terbilang(userBalance)} )</Header.Subheader>
           </Header>
         </Segment>

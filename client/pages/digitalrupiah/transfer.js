@@ -96,8 +96,10 @@ class Transfer extends Component {
   checkForm = () => {
     this.setState({ errorMessage: "", positiveMessage: "" });
 
-    const { selected_receiver, transferAmount, userBalance } = this.state;
-    userBalance = userBalance ? web3_utils.fromWei(userBalance, "ether") : "";
+    const { selected_receiver, transferAmount } = this.state;
+    let userBalance = userBalance
+      ? web3_utils.fromWei(userBalance, "ether")
+      : "";
 
     if (
       selected_receiver != undefined &&
