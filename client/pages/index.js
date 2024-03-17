@@ -45,7 +45,7 @@ class Dapp extends Component {
       const DigitalRupeeAddress = await CBDC_Dapps.methods
         .digitalRupee()
         .call();
-
+      console.log(accounts);
       console.log(DigitalRupeeAddress);
       const DigitalRupee = await getContract(
         web3,
@@ -127,7 +127,7 @@ class Dapp extends Component {
               Digital Rupee Balance
             </Header>
             {rupeeFormater.IDR.format(userBalance)}{" "}
-            <Header.Subheader>( {terbilang(userBalance)} )</Header.Subheader>
+            {/*<Header.Subheader>( {terbilang(userBalance)} )</Header.Subheader>*/}
           </Header>
         </Segment>
         {/* <Divider />

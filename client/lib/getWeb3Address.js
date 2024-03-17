@@ -5,6 +5,7 @@ const getWeb3Adresses = async () => {
     const web3 = await getWeb3();
 
     const accounts = await web3.eth.getAccounts();
+    console.log(accounts);
 
     return { web3, accounts };
   } catch (error) {

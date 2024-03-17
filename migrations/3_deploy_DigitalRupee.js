@@ -3,7 +3,7 @@ const DigitalRupee = artifacts.require("DigitalRupee");
 
 module.exports = async function (deployer) {
   const CBDC_DappsInstance = await CBDC_Dapps.deployed();
-  const BI_Account = await CBDC_DappsInstance.BankIndonesiaAddress();
+  const BI_Account = await CBDC_DappsInstance.ReserveBankofIndiaAddress();
   await CBDC_DappsInstance.createDigitalRupee();
 
   let accounts = await web3.eth.getAccounts();
