@@ -77,7 +77,9 @@ class AdminDigitalRupee extends Component {
 
   updateBIOwned = async () => {
     const { CBDC_Dapps, DigitalRupee } = this.state;
-    const BI_address = await CBDC_Dapps.methods.BankIndonesiaAddress().call();
+    const BI_address = await CBDC_Dapps.methods
+      .ReserveBankofIndiaAddress()
+      .call();
     const BI_owned = web3_utils.fromWei(
       await DigitalRupee.methods.balanceOf(BI_address).call(),
       "ether"
@@ -340,7 +342,7 @@ class AdminDigitalRupee extends Component {
 
           {this.renderModal()}
         </Form>
-        {/* <Divider />
+        <Divider />
         <Header as="h2" textAlign="center">
           Redemption
           <Header.Subheader> Redeem Digital Rupee</Header.Subheader>
@@ -379,7 +381,7 @@ class AdminDigitalRupee extends Component {
           <Form.Button primary loading={this.state.loading}>
             Submit
           </Form.Button>
-        </Form> */}
+        </Form>
       </Layout>
     );
   }

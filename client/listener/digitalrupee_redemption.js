@@ -3,7 +3,7 @@ const DigitalRupee_build = require("../../build/contracts/DigitalRupee.json");
 const CBDC_Dapps_build = require("../../build/contracts/CBDC_Dapps.json");
 
 const init = async () => {
-  const provider = new Web3("ws://127.0.0.1:8546");
+  const provider = new Web3("http://127.0.0.1:8545");
   const web3 = new Web3(provider);
   const netId = await web3.eth.net.getId();
 

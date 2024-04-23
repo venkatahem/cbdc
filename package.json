@@ -7,7 +7,6 @@
     "openzeppelin-solidity": "^4.4.0",
     "web3": "^1.6.1"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

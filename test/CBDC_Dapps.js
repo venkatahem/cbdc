@@ -6,7 +6,7 @@ let participant_2;
 contract("CBDC_Dapps", (accounts) => {
   it("...should recognize accounts[0] as BI account", async () => {
     const CBDC_DappsInstance = await CBDC_Dapps.deployed();
-    const BI_Account = await CBDC_DappsInstance.BankIndonesiaAddress();
+    const BI_Account = await CBDC_DappsInstance.ReserveBankofIndiaAddress();
 
     assert.equal(BI_Account, accounts[0]);
   });
@@ -19,7 +19,7 @@ contract("CBDC_Dapps", (accounts) => {
     );
 
     // console.log(participant);
-    assert.equal(participant.name, "Bank Indonesia");
+    assert.equal(participant.name, "Reserve Bank of India");
   });
 
   it("...can add new participant", async () => {
@@ -27,7 +27,10 @@ contract("CBDC_Dapps", (accounts) => {
 
     //add existing participant, expected error
     try {
-      await CBDC_DappsInstance.addParticipant(accounts[0], "Bank Indonesia");
+      await CBDC_DappsInstance.addParticipant(
+        accounts[0],
+        "Reserve Bank of India"
+      );
       assert(false);
     } catch (err) {
       assert(true, "reject adding existing participant");
@@ -35,7 +38,7 @@ contract("CBDC_Dapps", (accounts) => {
 
     //add participant using non BI account, expected error
     try {
-      await CBDC_DappsInstance.addParticipant(accounts[1], "Bank Mandiri", {
+      await CBDC_DappsInstance.addParticipant(accounts[1], "HDFC", {
         from: accounts[5],
       });
       assert(false);
@@ -44,22 +47,22 @@ contract("CBDC_Dapps", (accounts) => {
     }
 
     try {
-      await CBDC_DappsInstance.addParticipant(accounts[1], "Bank Mandiri");
-      assert(true, "add participant 1 as Bank Mandiri succedd");
+      await CBDC_DappsInstance.addParticipant(accounts[1], "HDFC");
+      assert(true, "add participant 1 as HDFC succedd");
     } catch (err) {
       assert(false, err);
     }
 
     try {
-      await CBDC_DappsInstance.addParticipant(accounts[2], "Bank BCA");
-      assert(true, "add participant 2 as Bank BCA succedd");
+      await CBDC_DappsInstance.addParticipant(accounts[2], "SBI");
+      assert(true, "add participant 2 as SBI succedd");
     } catch (err) {
       assert(false, err);
     }
     participant_1 = await CBDC_DappsInstance.addressToParticipant(accounts[1]);
     participant_2 = await CBDC_DappsInstance.addressToParticipant(accounts[2]);
-    assert(participant_1.name, "Bank Mandiri");
-    assert(participant_2.name, "Bank BCA");
+    assert(participant_1.name, "HDFC");
+    assert(participant_2.name, "SBI");
   });
 
   it("...can edit participant", async () => {

@@ -130,11 +130,11 @@ class Dapp extends Component {
             {/*<Header.Subheader>( {terbilang(userBalance)} )</Header.Subheader>*/}
           </Header>
         </Segment>
-        {/* <Divider />
+        <Divider />
         <Header as="h2" textAlign="center">
           SBN Ownership
         </Header>
-        {this.renderTable()} */}
+        {this.renderTable()}
       </Layout>
     );
   }
