@@ -31,7 +31,7 @@ class Layout extends Component {
     try {
       const CBDC_Dapps = await getContract(web3, CBDC_Dapps_build);
 
-      const bi_address = await CBDC_Dapps.methods.BankIndonesiaAddress().call();
+      const bi_address = await CBDC_Dapps.methods.CentralBankAddress().call();
       const participant = await CBDC_Dapps.methods
         .addressToParticipant(accounts[0])
         .call();
@@ -81,7 +81,7 @@ class Layout extends Component {
           ></Navbar>
         )}
         <br></br>
-        <Container style={{ minHeight: 757 }}>{this.props.children}</Container>
+        <Container style={{ minHeight: 610 }}>{this.props.children}</Container>
         <br></br> <br></br>
         <Footer></Footer>
       </>

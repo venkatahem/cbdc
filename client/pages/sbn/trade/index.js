@@ -50,9 +50,7 @@ class Requests extends Component {
 
     const CBDC_Dapps = await getContract(web3, CBDC_Dapps_build);
 
-    const DigitalRupeeAddress = await CBDC_Dapps.methods
-      .digitalRupee()
-      .call();
+    const DigitalRupeeAddress = await CBDC_Dapps.methods.digitalRupee().call();
     const DigitalRupee = await getContract(
       web3,
       DigitalRupee_build,

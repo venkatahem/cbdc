@@ -17,13 +17,13 @@ module.exports = async function (deployer) {
   const today = latestBlock.timestamp;
   const todayExactHour = today - (today % 3600);
 
-  //   function createSellRequest(){
-  //     address _SBN,
-  //     address _buyer,
-  //     uint256 _sbnAmount,
-  //     uint256 _rupeeAmount,
-  //     uint256 _expiredDate
-  // };
+  // function createSellRequest(
+  //   address _SBN,
+  //   address _buyer,
+  //   uint256 _sbnAmount,
+  //   uint256 _rupeeAmount,
+  //   uint256 _expiredDate
+
   // sell 100 unit of SBR010 from accounts[1] (Bank Mandiri) to accounts[2] (Bank BCA) for a total of Rp105.000.000. The seller does not approve their SBN yet
   await CBDC_DappsInstance.createSellRequest(
     sbn[0],

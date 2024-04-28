@@ -333,7 +333,7 @@ class BuyRequestRow extends Component {
 
       let tx1, tx2;
 
-      this.setState({ loadingStatus: "Waiting DIDR Approval..." });
+      this.setState({ loadingStatus: "Waiting DINR Approval..." });
       await DigitalRupee.methods
         .approve(
           request_address,

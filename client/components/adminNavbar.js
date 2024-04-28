@@ -19,7 +19,7 @@ class AdminNavbar extends Component {
   render() {
     return (
       <div>
-        <Menu size="medium" color={"blue"} inverted stackable borderless>
+        <Menu size="large" color={"blue"} inverted stackable borderless>
           <Menu.Item name="home">
             <a href="/">
               <NextJSImage

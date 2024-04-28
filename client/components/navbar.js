@@ -22,14 +22,14 @@ class Navbar extends Component {
   render() {
     return (
       <div>
-        <Menu size="medium" color={"teal"} inverted stackable borderless>
+        <Menu size="large" color={"blue"} inverted stackable borderless>
           <Menu.Item name="home">
             <a href="/">
               <NextJSImage
                 src={myImage}
                 layout="intrinsic"
-                width={80}
-                height={40}
+                width={160}
+                height={60}
               />
             </a>
           </Menu.Item>

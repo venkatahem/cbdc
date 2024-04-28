@@ -57,7 +57,7 @@ class RedemptionDigitalRupee extends Component {
 
     const total_supply = await SBN_contract.methods.totalSupply().call();
 
-    const BI_address = await CBDC_Dapps.methods.BankIndonesiaAddress().call();
+    const BI_address = await CBDC_Dapps.methods.CentralBankAddress().call();
 
     const BI_owned = await SBN_contract.methods.balanceOf(BI_address).call();
 
@@ -115,9 +115,7 @@ class RedemptionDigitalRupee extends Component {
   renderRow() {
     if (this.state.web3 != undefined && this.state.accounts[0] != undefined) {
       return this.state.redemption.map((content, index) => {
-        const value_readable = rupeeFormater.whole_number.format(
-          content.value
-        );
+        const value_readable = rupeeFormater.whole_number.format(content.value);
 
         return (
           <Table.Row>

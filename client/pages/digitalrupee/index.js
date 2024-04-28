@@ -167,13 +167,13 @@ class DigitalRupeeIndex extends Component {
       return this.state.all_activities.map((content, index) => {
         const value_readable =
           "D" +
-          rupeeFormater.IDR.format(
+          rupeeFormater.INR.format(
             web3_utils.fromWei(content.value.toString(), "ether")
           );
 
         const balance_readable =
           "D" +
-          rupeeFormater.IDR.format(
+          rupeeFormater.INR.format(
             web3_utils.fromWei(content.balance.toString(), "ether")
           );
         return (
@@ -267,8 +267,8 @@ class DigitalRupeeIndex extends Component {
             <Header sub textAlign="center">
               Digital Rupee Balance
             </Header>
-            {rupeeFormater.IDR.format(userBalance)}{" "}
-            {/* <Header.Subheader>( {terbilang(userBalance)} )</Header.Subheader> */}
+            {"D" + rupeeFormater.INR.format(userBalance)}{" "}
+            <Header.Subheader>( {terbilang(userBalance)} )</Header.Subheader>
           </Header>
         </Segment>
         <Divider />

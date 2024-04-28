@@ -487,7 +487,7 @@ class RequestsNew extends Component {
                 min="1"
                 placeholder="Amount"
               >
-                <Label>DIDR</Label>
+                <Label>DINR</Label>
                 <input />
               </Input>
             </Form.Field>
@@ -499,9 +499,7 @@ class RequestsNew extends Component {
             </p>
             <p>
               Total :{"  "}
-              {this.state.total
-                ? rupeeFormater.Rp.format(this.state.total)
-                : 0}
+              {this.state.total ? rupeeFormater.Rp.format(this.state.total) : 0}
             </p>
 
             <Form.Field>

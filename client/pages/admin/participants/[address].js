@@ -66,7 +66,7 @@ class AdminParticipantsEdit extends Component {
 
     const CBDC_Dapps = await getContract(web3, CBDC_Dapps_build);
 
-    const BI_address = await CBDC_Dapps.methods.BankIndonesiaAddress().call();
+    const BI_address = await CBDC_Dapps.methods.CentralBankAddress().call();
 
     const participant = await CBDC_Dapps.methods
       .addressToParticipant(address)

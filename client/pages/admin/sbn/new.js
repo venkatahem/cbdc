@@ -198,9 +198,7 @@ class AdminSBNNew extends Component {
                   <Table.Cell>
                     <b>Unit Price</b>
                   </Table.Cell>
-                  <Table.Cell>
-                    {rupeeFormater.Rp.format(unit_price)}
-                  </Table.Cell>
+                  <Table.Cell>{rupeeFormater.Rp.format(unit_price)}</Table.Cell>
                 </Table.Row>
 
                 <Table.Row>
@@ -296,7 +294,7 @@ class AdminSBNNew extends Component {
                 min="1"
                 placeholder="Amount"
               >
-                <Label>DIDR</Label>
+                <Label>DINR</Label>
                 <input />
               </Input>
             </Form.Field>

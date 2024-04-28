@@ -3,7 +3,7 @@ export function format_date(s) {
     year: "numeric",
     month: "long",
     day: "numeric",
-    timeZone: "Asia/Kolkata",
+    timeZone: "Asia/Jakarta",
   };
   const dtFormat = new Intl.DateTimeFormat("en-GB", options);
 
@@ -15,7 +15,7 @@ export function format_timestamp(s) {
     year: "numeric",
     month: "long",
     day: "numeric",
-    timeZone: "Asia/Kolkata",
+    timeZone: "Asia/Jakarta",
     hour: "numeric",
     minute: "numeric",
   };
@@ -29,7 +29,7 @@ export function format_timestamp_short(s) {
     year: "numeric",
     month: "numeric",
     day: "numeric",
-    timeZone: "Asia/Kolkata",
+    timeZone: "Asia/Jakarta",
     hour: "numeric",
     minute: "numeric",
   };

@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 0.8.11;
+pragma solidity ^0.8.0;
 
 import "./Participant_Struct.sol";
 import "./DigitalRupee.sol";
@@ -9,15 +9,15 @@ import "./SBN.sol";
 import "openzeppelin-solidity/contracts/token/ERC20/IERC20.sol";
 
 contract CBDC_Dapps {
-    address public immutable ReserveBankofIndiaAddress;
+    address public immutable CentralBankAddress;
 
-    modifier isReserveBankofIndia() {
-        require(msg.sender == ReserveBankofIndiaAddress, "Not Central Bank");
+    modifier isCentralBank() {
+        require(msg.sender == CentralBankAddress, "Not Central Bank");
         _;
     }
 
     constructor() {
-        ReserveBankofIndiaAddress = msg.sender;
+        CentralBankAddress = msg.sender;
 
         addParticipant(msg.sender, "Central Bank");
     }
@@ -26,11 +26,8 @@ contract CBDC_Dapps {
 
     DigitalRupee public digitalRupee;
 
-    function createDigitalRupee() public isReserveBankofIndia {
-        digitalRupee = new DigitalRupee(
-            ReserveBankofIndiaAddress,
-            address(this)
-        );
+    function createDigitalRupee() public isCentralBank {
+        digitalRupee = new DigitalRupee(CentralBankAddress, address(this));
     }
 
     // modifying participant
@@ -42,7 +39,7 @@ contract CBDC_Dapps {
     function addParticipant(
         address _address,
         string memory _name
-    ) public isReserveBankofIndia {
+    ) public isCentralBank {
         require(
             addressToParticipant[_address].status == ParticipantStatus.NotExist,
             "participant already exist, use edit instead"
@@ -61,7 +58,7 @@ contract CBDC_Dapps {
         address _address,
         string memory _name,
         ParticipantStatus _status
-    ) public isReserveBankofIndia {
+    ) public isCentralBank {
         require(
             _status != ParticipantStatus.NotExist,
             "to delete participant, use remove participant"
@@ -71,7 +68,7 @@ contract CBDC_Dapps {
     }
 
     //disclaimer: this function must be rarely called, e.g. when a company (participant) went bankrupt. Otherwise use edit participant
-    function removeParticipant(uint256 _index) public isReserveBankofIndia {
+    function removeParticipant(uint256 _index) public isCentralBank {
         require(_index < participantAddresses.length, "index out of bound");
 
         address _address = participantAddresses[_index];
@@ -116,9 +113,9 @@ contract CBDC_Dapps {
         uint256 _initialUnitPrice,
         uint256 _releasedDate,
         uint256 _maturityDate
-    ) public isReserveBankofIndia {
+    ) public isCentralBank {
         SBN _sbn = new SBN({
-            _minter: ReserveBankofIndiaAddress,
+            _minter: CentralBankAddress,
             _name: _name,
             _symbol: _symbol,
             _initialUnitPrice: _initialUnitPrice,

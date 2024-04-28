@@ -13,32 +13,32 @@ module.exports = async function (deployer) {
   //   uint256 _maturityDate
 
   await CBDC_DappsInstance.createSBN(
-    "Savings Bond Ritel 010",
-    "SBR010",
+    "Savings Bond 010",
+    "SB010",
     web3.utils.toWei("1000000", "ether"),
     1626886800, //22 Juli 2021
     1688922000 //10 Juli 2023
   );
 
   await CBDC_DappsInstance.createSBN(
-    "Sukuk Ritel 015",
-    "SR015",
+    "Retail Bond 015",
+    "RB015",
     web3.utils.toWei("1000000", "ether"),
     1632243600, //22 September 2021
     1725901200 //10 September 2024
   );
 
   await CBDC_DappsInstance.createSBN(
-    "Sukuk Tabungan 008",
-    "ST008",
+    "Savings Bond 008",
+    "SB008",
     web3.utils.toWei("1000000", "ether"),
     1637686800, //24 November 2021
     1699549200 //10 November 2023
   );
 
   await CBDC_DappsInstance.createSBN(
-    "Obligasi Negara Ritel 020",
-    "ORI020",
+    "Retail Bond 020",
+    "RB020",
     web3.utils.toWei("1000000", "ether"),
     1635267600, //27 Oktober 2021
     1728925200 //15 Oktober 2024

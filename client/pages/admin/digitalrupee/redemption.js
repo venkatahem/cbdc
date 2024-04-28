@@ -29,9 +29,7 @@ class RedemptionDigitalRupee extends Component {
 
     const CBDC_Dapps = await getContract(web3, CBDC_Dapps_build);
 
-    const DigitalRupeeAddress = await CBDC_Dapps.methods
-      .digitalRupee()
-      .call();
+    const DigitalRupeeAddress = await CBDC_Dapps.methods.digitalRupee().call();
 
     const DigitalRupee = await getContract(
       web3,
@@ -80,7 +78,7 @@ class RedemptionDigitalRupee extends Component {
       return this.state.redemption.map((content, index) => {
         const value_readable =
           "D" +
-          rupeeFormater.IDR.format(
+          rupeeFormater.INR.format(
             web3_utils.fromWei(content.value.toString(), "ether")
           );
 

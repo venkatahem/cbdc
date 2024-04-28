@@ -90,10 +90,8 @@ class Redeem extends Component {
   checkForm = () => {
     this.setState({ errorMessage: "", positiveMessage: "" });
 
-    const { redeemAmount } = this.state;
-    let userBalance = userBalance
-      ? web3_utils.fromWei(userBalance, "ether")
-      : "";
+    const { redeemAmount, userBalance } = this.state;
+    userBalance = userBalance ? web3_utils.fromWei(userBalance, "ether") : "";
 
     if (
       parseInt(redeemAmount) > 0 &&
@@ -162,7 +160,7 @@ class Redeem extends Component {
                     <b>Redeem Amount</b>
                   </Table.Cell>
                   <Table.Cell>
-                    {"D" + rupeeFormater.IDR.format(redeemAmount)}
+                    {"D" + rupeeFormater.INR.format(redeemAmount)}
                   </Table.Cell>
                 </Table.Row>
                 <Table.Row>
@@ -212,14 +210,14 @@ class Redeem extends Component {
     return (
       <Layout>
         <Header dividing as="h1" textAlign="center">
-          REDEEM DIGITAL RUPEE
+          REDEEM DIGITAL Rupee
         </Header>
 
         <Header as="h1" textAlign="center">
           <Header sub textAlign="center">
             Current Balance
           </Header>
-          {"D" + rupeeFormater.IDR.format(userBalance)}{" "}
+          {"D" + rupeeFormater.INR.format(userBalance)}{" "}
           <Header.Subheader>( {terbilang(userBalance)} )</Header.Subheader>
         </Header>
         <Divider />
@@ -236,7 +234,7 @@ class Redeem extends Component {
               placeholder="Amount"
               required
             >
-              <Label>DIDR</Label>
+              <Label>DINR</Label>
               <input />
             </Input>
           </Form.Field>

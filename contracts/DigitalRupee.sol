@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 0.8.11;
+pragma solidity ^0.8.0;
 
 import "openzeppelin-solidity/contracts/token/ERC20/ERC20.sol";
 import "./CBDC_Dapps.sol";
@@ -12,7 +12,7 @@ contract DigitalRupee is ERC20 {
     event Issuance(address indexed receiver, uint256 value);
     event Redemption(address indexed sender, uint256 value);
 
-    constructor(address _minter, address _cbdc) ERC20("Digital Rupee", "DIDR") {
+    constructor(address _minter, address _cbdc) ERC20("Digital Rupee", "DINR") {
         minter = _minter;
         cbdc = CBDC_Dapps(_cbdc);
     }

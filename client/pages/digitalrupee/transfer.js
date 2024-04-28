@@ -96,10 +96,8 @@ class Transfer extends Component {
   checkForm = () => {
     this.setState({ errorMessage: "", positiveMessage: "" });
 
-    const { selected_receiver, transferAmount } = this.state;
-    let userBalance = userBalance
-      ? web3_utils.fromWei(userBalance, "ether")
-      : "";
+    const { selected_receiver, transferAmount, userBalance } = this.state;
+    userBalance = userBalance ? web3_utils.fromWei(userBalance, "ether") : "";
 
     if (
       selected_receiver != undefined &&
@@ -198,7 +196,7 @@ class Transfer extends Component {
                     <b>Transfer Amount</b>
                   </Table.Cell>
                   <Table.Cell>
-                    {"D" + rupeeFormater.IDR.format(transferAmount)}
+                    {"D" + rupeeFormater.INR.format(transferAmount)}
                   </Table.Cell>
                 </Table.Row>
                 <Table.Row>
@@ -248,14 +246,14 @@ class Transfer extends Component {
     return (
       <Layout>
         <Header dividing as="h1" textAlign="center">
-          TRANSFER DIGITAL RUPEE
+          TRANSFER DIGITAL Rupee
         </Header>
 
         <Header as="h1" textAlign="center">
           <Header sub textAlign="center">
             Current Balance
           </Header>
-          {"D" + rupeeFormater.IDR.format(userBalance)}{" "}
+          {"D" + rupeeFormater.INR.format(userBalance)}{" "}
           <Header.Subheader>( {terbilang(userBalance)} )</Header.Subheader>
         </Header>
         <Divider />
@@ -279,7 +277,7 @@ class Transfer extends Component {
               placeholder="Amount"
               required
             >
-              <Label>DIDR</Label>
+              <Label>DINR</Label>
               <input />
             </Input>
           </Form.Field>

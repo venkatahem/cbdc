@@ -1,7 +1,6 @@
 const PrivateKeyProvider = require("@truffle/hdwallet-provider");
 const mnemonic =
-  "hidden logic grass march install hour violin produce success recall whisper limit";
-
+  "weapon upgrade tennis judge warm armor afraid ready quality flock quiz shy";
 const privateKeyProvider = new PrivateKeyProvider(
   mnemonic,
   "http://localhost:8545"
@@ -15,7 +14,7 @@ module.exports = {
   networks: {
     development: {
       host: "127.0.0.1",
-      port: 8545,
+      port: 9545,
       network_id: "*", // Match any network id
     },
 

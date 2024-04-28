@@ -233,8 +233,7 @@ class SellRequestRow extends Component {
       100
     ).toFixed(2);
 
-    const total_sell_price_readable =
-      rupeeFormater.Rp.format(total_sell_price);
+    const total_sell_price_readable = rupeeFormater.Rp.format(total_sell_price);
 
     const expired_readable = unixDate.format_timestamp(request_expired);
 

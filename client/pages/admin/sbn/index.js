@@ -74,7 +74,7 @@ class AdminSBN extends Component {
 
     const total_supply = await SBN_contract.methods.totalSupply().call();
 
-    const BI_address = await CBDC_Dapps.methods.BankIndonesiaAddress().call();
+    const BI_address = await CBDC_Dapps.methods.CentralBankAddress().call();
 
     const BI_owned = await SBN_contract.methods.balanceOf(BI_address).call();
 
@@ -355,7 +355,7 @@ class AdminSBN extends Component {
           </Header>
 
           <Header as="h3" textAlign="center">
-            Total Owned by Reserve Bank of India
+            Total Owned by Central Bank
           </Header>
           <Header as="h1" textAlign="center">
             {rupeeFormater.whole_number.format(selected_SBN_detail.BI_owned)}

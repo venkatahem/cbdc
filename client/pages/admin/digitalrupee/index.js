@@ -77,9 +77,7 @@ class AdminDigitalRupee extends Component {
 
   updateBIOwned = async () => {
     const { CBDC_Dapps, DigitalRupee } = this.state;
-    const BI_address = await CBDC_Dapps.methods
-      .ReserveBankofIndiaAddress()
-      .call();
+    const BI_address = await CBDC_Dapps.methods.CentralBankAddress().call();
     const BI_owned = web3_utils.fromWei(
       await DigitalRupee.methods.balanceOf(BI_address).call(),
       "ether"
@@ -280,15 +278,15 @@ class AdminDigitalRupee extends Component {
             Total Supply
           </Header>
           <Header as="h1" textAlign="center">
-            {"D" + rupeeFormater.IDR.format(total_supply)}{" "}
+            {"D" + rupeeFormater.INR.format(total_supply)}{" "}
             <Header.Subheader>( {terbilang(total_supply)} )</Header.Subheader>
           </Header>
 
           <Header as="h3" textAlign="center">
-            Total Owned by Reserve Bank of India
+            Total Owned by Central Bank
           </Header>
           <Header as="h1" textAlign="center">
-            {"D" + rupeeFormater.IDR.format(BI_owned)}{" "}
+            {"D" + rupeeFormater.INR.format(BI_owned)}{" "}
             <Header.Subheader>( {terbilang(BI_owned)} )</Header.Subheader>
           </Header>
         </Segment>
@@ -322,7 +320,7 @@ class AdminDigitalRupee extends Component {
               min="1"
               placeholder={"Digital Rupee Amount"}
             >
-              <Label>DIDR</Label>
+              <Label>DINR</Label>
               <input />
             </Input>
           </Form.Field>
@@ -342,7 +340,7 @@ class AdminDigitalRupee extends Component {
 
           {this.renderModal()}
         </Form>
-        <Divider />
+        {/* <Divider />
         <Header as="h2" textAlign="center">
           Redemption
           <Header.Subheader> Redeem Digital Rupee</Header.Subheader>
@@ -362,7 +360,7 @@ class AdminDigitalRupee extends Component {
               min="1"
               placeholder={"Digital Rupee Amount"}
             >
-              <Label>DIDR</Label>
+              <Label>DINR</Label>
               <input />
             </Input>
           </Form.Field>
@@ -381,7 +379,7 @@ class AdminDigitalRupee extends Component {
           <Form.Button primary loading={this.state.loading}>
             Submit
           </Form.Button>
-        </Form>
+        </Form> */}
       </Layout>
     );
   }

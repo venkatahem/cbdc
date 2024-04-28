@@ -21,7 +21,7 @@ const reverseReadableStatus = {
   2: "Rejected",
   3: "Accepted",
   4: "Pending Seller's SBN Approval",
-  5: "Pending Buyer's DIDR Approval",
+  5: "Pending Buyer's DINR Approval",
   6: "Expired",
 };
 

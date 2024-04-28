@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 0.8.11;
+pragma solidity ^0.8.0;
 
 import "openzeppelin-solidity/contracts/token/ERC20/ERC20.sol";
 import "./CBDC_Dapps.sol";
@@ -76,25 +76,30 @@ contract SBN is ERC20 {
         emit Redemption(_msgSender(), _amount);
     }
 
-    function _getParticipant(
-        address _address
-    ) private view returns (Participant memory) {
+    function _getParticipant(address _address)
+        private
+        view
+        returns (Participant memory)
+    {
         Participant memory _participant = cbdc.getParticipant(_address);
         return _participant;
     }
 
-    function _isActiveParticipant(
-        address _address
-    ) private view returns (bool) {
+    function _isActiveParticipant(address _address)
+        private
+        view
+        returns (bool)
+    {
         Participant memory _participant = cbdc.getParticipant(_address);
 
         return _participant.status == ParticipantStatus.Active;
     }
 
-    function transfer(
-        address recipient,
-        uint256 amount
-    ) public override returns (bool) {
+    function transfer(address recipient, uint256 amount)
+        public
+        override
+        returns (bool)
+    {
         require(
             _isActiveParticipant(_msgSender()),
             "sender is not an active CBDC participant"
@@ -108,10 +113,11 @@ contract SBN is ERC20 {
         return true;
     }
 
-    function approve(
-        address spender,
-        uint256 amount
-    ) public override returns (bool) {
+    function approve(address spender, uint256 amount)
+        public
+        override
+        returns (bool)
+    {
         require(
             _isActiveParticipant(_msgSender()),
             "sender is not an active CBDC participant"
