@@ -278,7 +278,7 @@ class AdminSBNNew extends Component {
                 }}
                 labelPosition="left"
                 type="text"
-                placeholder="SBN Name (e.g. Sukuk Tabungan 008)"
+                placeholder="SBN Name (e.g. Retail Bond 008)"
               >
                 <input />
               </Input>
