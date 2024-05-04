@@ -8,21 +8,21 @@ CBDC Demo using hyperledger besu
 
 &emsp;&emsp;besu-pvt-network(folder)\
 &emsp;&emsp; |\
-&emsp;&emsp; |**node1(folder)\
+&emsp;&emsp; |node1(folder)\
 &emsp;&emsp; | &emsp;&emsp;| \
-&emsp;&emsp; | &emsp;&emsp;|\_\_**data(folder)\
+&emsp;&emsp; | &emsp;&emsp;|\_\_data(folder)\
 &emsp;&emsp; |\
-&emsp;&emsp; |**node2(folder)\
+&emsp;&emsp; |node2(folder)\
 &emsp;&emsp; | &emsp;&emsp;| \
-&emsp;&emsp; | &emsp;&emsp;|\_\_**data(folder)\
+&emsp;&emsp; | &emsp;&emsp;|\_\_data(folder)\
 &emsp;&emsp; |\
-&emsp;&emsp; |**node3(folder)\
+&emsp;&emsp; |node3(folder)\
 &emsp;&emsp; | &emsp;&emsp;| \
-&emsp;&emsp; | &emsp;&emsp;|\_\_**data(folder)\
+&emsp;&emsp; | &emsp;&emsp;|\_\_data(folder)\
 &emsp;&emsp; |\
-&emsp;&emsp; |**node4(folder)\
+&emsp;&emsp; |node4(folder)\
 &emsp;&emsp; | &emsp;&emsp;| \
-&emsp;&emsp; | &emsp;&emsp;|\_\_**data(folder)\
+&emsp;&emsp; | &emsp;&emsp;|\_\_data(folder)\
 &emsp;&emsp; |\
 &emsp;&emsp; |\_\_genesis.json(file)
 
